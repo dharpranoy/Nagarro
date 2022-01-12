@@ -10,7 +10,6 @@ const path = require('path')
 const Jimp = require('jimp')
 const fs = require('fs')
 const crypto = require('crypto')
-let axios = require('axios')
 let conn = require('./cred')
 router.get('/login',(req,res)=>{
 	res.render('login')
@@ -25,10 +24,9 @@ router.post('/login/register',(req,res)=>{
 	bcrypt.hash(password,10)
 	.then(hashed=>{
 		conn.query(`INSERT INTO auth VALUES ('${name}','${hashed}','${mail}')`,(err,result)=>{
-			if (err) throw err
+            result=result.rows
             let uuid = mail.split('@')[0]
-            conn.query(`INSERT INTO users(username,email,uuid) VALUES ('${name}','${mail}','${uuid}')`,(err2,none)=>{
-                if (err2) throw err2
+            conn.query(`INSERT INTO users(username,email,pid) VALUES ('${name}','${mail}','${uuid}')`,(err2,none)=>{
 			    res.redirect('/dashboard')
             })
 		})
@@ -50,7 +48,7 @@ router.get('/dashboard',ensureLogin.ensureLoggedIn(),(req,res)=>{
             let pid = req.user.email.split('@')[0]
             let qr = `INSERT INTO users SELECT '${req.user.displayName}','${req.user.email}','${pid}','${req.user.picture}' where not exists (SELECT * FROM users WHERE email = '${req.user.email}')`
             conn.query(qr,(err,result)=>{
-                if (err) throw err
+                result=result.rows
                 res.render('home',{
                     'username':req.user.displayName,
                     'displaypicture':`${req.user.picture}`
@@ -74,7 +72,7 @@ router.get('/logout',ensureLogin.ensureLoggedIn(),(req,res)=>{
 	})	
 	res.redirect('/')
 })
-router.get('/userinfo',(req,res)=>{
+router.get('/userinfo',ensureLogin.ensureLoggedIn(),(req,res)=>{
 	if (req.user.displayName){
 		let obj = {
 			'username':`${req.user.displayName}`,
@@ -86,40 +84,38 @@ router.get('/userinfo',(req,res)=>{
 	}else{
 		let qr = `SELECT * FROM users WHERE email='${req.user.email}'`
 		conn.query(qr,(err,result)=>{
-			if (err) throw err
+            result=result.rows
 			res.send(result[0])
 		})
 	}
 })
-router.post('/addtweet',(req,res)=>{
+router.post('/addtweet',ensureLogin.ensureLoggedIn(),(req,res)=>{
 	let uuid = crypto.randomUUID()
 	let txt = req.body.txt
 	let img = req.body.img
-    let path = ""
-    if (img!=""){
+    let path = '' 
+    if (img!=''){
         const buffer = Buffer.from(img,"base64")
         path = './public/uploads/'+`${uuid}.jpg`
         Jimp.read(buffer, (err,result)=>{
             if (err) {
-                path=""
+                path=''
             }else{
                 result.quality(0).write(path)
             }
         })
     }
 	let name = req.user.username || req.user.displayName
-	let qr = `INSERT INTO tweets VALUES("${uuid}","${req.user.email}","${txt}","${path}",CURTIME(),CURDATE(),'${name}')`
-	conn.query(qr,(err,result)=>{
-		if (err) throw err
-	})
-	let el = `SELECT  FROM tweets WHERE uid='${uuid}'`
-    let sel = `SELECT uid,t1.email,txt,img,post,dates,t1.username,dispic FROM tweets t1 inner join users u1 on t1.email = u1.email and uid = '${uuid}'`
-	conn.query(sel,(err,result)=>{
-		if (err) throw err
-		res.send(result)
-	})
+	let qr = `INSERT INTO tweets values ('${uuid}','${req.user.email}','${txt}','${path}',CURRENT_TIME,CURRENT_DATE,'${name}');`
+	console.log(qr)
+    conn.query(qr,(err,result1)=>{
+        let sel = `SELECT uid,t1.email,txt,img,post,dates,t1.username,dispic FROM tweets t1 inner join users u1 on t1.email = u1.email and uid = '${uuid}'`
+        conn.query(sel,(err2,result)=>{
+            res.send(result.rows)
+        })
+    })
 })
-router.get('/like',(req,res)=>{
+router.get('/like',ensureLogin.ensureLoggedIn(),(req,res)=>{
     let query=""
   	if (req.query.q=="is"){
         query = `INSERT INTO likes VALUES ('${req.query.id}','${req.user.email}')`
@@ -127,55 +123,46 @@ router.get('/like',(req,res)=>{
     		query = `DELETE FROM likes WHERE uid='${req.query.id}' and email='${req.user.email}'`
     }
   	conn.query(query,(err,result)=>{
-  		if (err) throw err
+        console.log(err)
   	})
   	res.send('ok')
 })
-router.get('/chklike',(req,res)=>{
+router.get('/chklike',ensureLogin.ensureLoggedIn(),(req,res)=>{
 		let qr = `SELECT COUNT(email) as cnt from likes where uid='${req.query.id}'`
 		let obj = {
 		}
 		conn.query(qr,(err,result1)=>{
+                result1=result1.rows
 				obj['cnt']=result1[0].cnt
 				let qir = `SELECT email from likes where uid='${req.query.id}' and email='${req.user.email}'`
 				conn.query(qir,(err,result2)=>{
+                    result2=result2.rows
 					if (result2.length==0) obj['set']=false
 					else obj['set']=true
 					res.send(obj)
 				})
 		})
 })
-router.get('/profview',(req,res)=>{
+router.get('/profview',ensureLogin.ensureLoggedIn(),(req,res)=>{
     console.log(req.query)
     res.send('ok')
 })
-router.get('/recent',(req,res)=>{
+router.get('/recent',ensureLogin.ensureLoggedIn(),(req,res)=>{
     let mail = req.query.mail
-    let select = `SELECT users FROM followers WHERE current='${mail}'`
-    conn.query(select,(err,fw)=>{
-        if (err) throw err
-        let str = ""
-        for (f of fw){
-            str+="'"+f.users+"'"+","
-        }
-        str=str.substring(-1)
-    })
     let query = `SELECT uid,t1.email,txt,img,post,dates,t1.username,dispic FROM tweets t1 inner join users u1 on t1.email = u1.email`
     conn.query(query,(err,all)=>{
-        if (err) throw err
-        
+        all=all.rows
         res.send(all)
     })
 })
-router.post('/addcomment',(req,res)=>{
+router.post('/addcomment',ensureLogin.ensureLoggedIn(),(req,res)=>{
 	let name = req.user.username || req.user.displayName
 	let qr = `INSERT INTO comments(uuid,email,txt) VALUES ('${req.body.id}','${req.user.email}','${req.body.commentmsg}')`
 	conn.query(qr,(err1,result)=>{
-		if (err1) throw err1
             let lr=`SELECT dispic from users where email = '${req.user.email}'`
             conn.query(lr,(err2,pic_url)=>{
-                if (err2) throw err2
-                console.log(pic_url)
+                if (err2) console.log(err2)
+                pic_url=pic_url.rows
                 let obj = [{
                     'username':`${name}`,
                     'email':`${req.user.email}`,
@@ -187,18 +174,18 @@ router.post('/addcomment',(req,res)=>{
 
         })
 })
-router.get('/checkcomment',(req,res)=>{
+router.get('/checkcomment',ensureLogin.ensureLoggedIn(),(req,res)=>{
 		let qr = `SELECT COUNT(email) as count from comments where uuid='${req.query.id}'`
 		conn.query(qr,(err,result)=>{
-			if (err) throw err
+            result=result.rows
 			res.send(result[0])
 		})
 
 })
-router.get('/comments',(req,res)=>{
-		let qr = `SELECT * FROM comments c1 join users u1 where c1.email = u1.email and c1.uuid = '${req.query.id}'`
+router.get('/comments',ensureLogin.ensureLoggedIn(),(req,res)=>{
+		let qr = `SELECT * FROM comments c1 join users u1 ON c1.email = u1.email AND c1.uuid = '${req.query.id}'`
 		conn.query(qr,(err,result)=>{
-			if (err) throw err
+            result=result.rows
 			res.send(result)
 		})
 })

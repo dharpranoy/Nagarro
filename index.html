@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage : Version(1.0)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Exo:wght@500&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body{
+
+            padding: 0px;
+            margin: 0px;
+            border: 0px;
+
+        }
+        .icon
+        {
+            
+            background-color: rgb(10, 141, 141);
+            padding: 10px;
+            padding-top:15px;
+            width: 300px;
+          
+        }
+        .top-strip
+        {
+            display: flex;
+            justify-content: baseline;
+            
+            
+        }
+        .info
+        {
+            color: rgb(255, 255, 255);
+            padding-left: 2rem;
+            padding-right: 20px;
+            font-size: large;
+            font-family: 'exo';
+            background-color: #090502;
+         
+        }
+        #logo
+        {
+            padding:10px;
+        }
+        .entry
+        {
+            color: rgb(255, 255, 255);
+            background-color: #090502;
+            padding-left: 50px;
+            padding-top: 25px;
+            padding-right: 92px;
+            
+
+        }
+       #list
+       {
+           display: flex;
+           justify-content: baseline;
+           list-style: none;
+           padding-bottom: 13px;
+           
+       }
+        #listitem
+        {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            padding: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px transparent;
+            font-family:'Comfortaa';
+            font-size: 0.9rem;
+        }
+        #listitem:hover
+        {
+            transition: 0.3s color;
+            color: rgba(255, 0, 0, 0.993);
+            border-bottom: 2px solid rgb(255, 0, 0);
+            
+        }
+        .navbar
+        {
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            background-color: #1f1109;
+        }
+        #box
+        {
+            padding: 10px;
+            width: 350px;
+            height: 15px;
+            background-color: rgb(255, 255, 255);
+            outline: none;
+            border: 1px;
+            border-radius: 50px;
+            opacity: 60%;
+            transition: 0.5s;
+           
+        }
+        #box:focus
+        {
+            transition: 0.5s;
+            opacity: 100%;
+
+        }
+        .search
+        {
+            padding-top: 8px;
+            padding-right: 30px;
+            
+            display: flex;
+            justify-content: space-evenly;
+        }
+       
+        
+        .readelement
+        {
+            display: flex;
+            justify-content: space-evenly;
+            list-style: none;
+            height: 90px;
+        }
+        .foot
+        {
+           
+            background-color: #090502;
+        }
+        #foot
+        {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+        #footele
+        {
+            padding: 5px;
+        }
+        #community
+        {
+            border: 3px solid rgb(0, 0, 0,0.1);
+            border-radius: 30px;
+        }
+
+        #community:hover    
+        {
+            transition: 0.7s;
+            border: 3px solid #00a2ff;
+            border-radius: 30px;
+             
+        }
+
+        .footnote
+        {
+            
+            background-color: #090502;
+        }
+        
+        #options
+        {
+            transition: 0.7s;
+
+        }
+        #options:hover
+        {
+            transition: 0.7s;
+            opacity: 60%;
+
+            height: 200px;
+            width: 250px;
+        }
+        #div2
+        {
+            border-radius: 15px; border:1px solid #111d36; background-color: #111d36;
+        }
+        .head2
+        {
+            display: flex; justify-content: center;
+        }
+        #quote
+        {
+            padding: 18px;height: 320px;
+        }
+
+        @media screen and (max-width:600px) {
+            
+            #main
+            {
+                width: 600px;
+                margin:0px auto;
+            }
+
+            .top-strip
+            {
+                display:inline;
+                justify-content: center;
+                width: 300px;
+                padding: 5px;
+                margin: 0px;
+            }
+            .icon
+            {
+                padding-left: 10px;
+                margin: 0px;
+                width: 580px;
+                display: flex;
+                justify-content: space-evenly;
+            }
+            .info
+            {
+                padding-left: 83px;
+                margin: 0px;
+                font-size: large;
+                height: 50px;
+            }
+            .head
+            {
+                background-color: #090502;
+                width: 600px;
+            }
+            .entry
+            {
+                padding-left: 155px;
+            }
+            .navbar
+            {
+                width: 580px;
+                display: inline;
+
+            }
+            .sbsi
+            {
+                width: 580px;
+                padding-bottom: 10px;
+            }
+            #list
+            {
+                width: 598px;
+                padding-top: 15px;
+                padding-left: 2px;
+            
+                background-color:#1f1109
+            }
+            #listitem
+            {
+                padding: 12px;
+                padding-top: 15px;
+            }
+            
+            .topsection
+            {
+                width: 600px;
+                background-color: #090502;
+            }
+            #box
+            {
+                width: 400px;
+            }
+            #sch
+            {
+                padding-left: 100px;
+            }
+            .search
+            {
+                width: 480px;
+            }
+            .topichead
+            {
+                display: inline;
+                width: 480px;
+                padding: 0px;
+
+            }
+            .footnote
+            {
+                width: 480px;
+            }
+            .head2
+            {
+                display: flex;
+                justify-content: center;
+                width: 480px;
+            }
+            .readelement
+            {
+                display: inline;
+                justify-content: center;
+                width: 300px;
+                display: inline;
+                padding-left: 50px;
+               
+            }
+            #div2
+            {
+               
+                width: 200px;
+                
+                
+            }
+
+            .description
+            {
+                width: 400px;
+                display: inline;
+                justify-content: end;
+            }
+            #quote
+            {
+                width: 200px;
+                padding: 10px;
+
+            }
+            .set2
+            {
+                width: 480px;
+            }
+           
+            
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="main" style="width: 1200px; margin:0px auto;">
+    <div class="topsection">
+
+   
+        <!--This is the top area-->
+    <div class="head"> 
+     <div class="top-strip">
+          <div class="icon">
+            <img id="logo" src="src/images/computer.png" height="75px" width="75px"> 
+            <img id="logo" src="src/images/dinosaur.png" height="75px" width="75px">
+            <img id="logo" src="src/images/big-bang.png" height="75px" width="75px">
+            <img id="logo" src="src/images/car.png" height="75px" width="75px">
+
+         </div>
+        
+            <div class="info">
+            <h1 style="padding-right: 10px;">Hii I am Pranoy Dhar <br/> Welcome to my portfolio website</h1>
+            </div>
+            <div class="entry">
+            <section>I am a student of Asansol Engineering College<br></section>
+            <address><span style="color: rgb(255, 0, 98);"> For more details contact <strong><b><a href="dvlpr.html"
+                 style="text-decoration: none; color: violet;">Pranoy Dhar (dharpranoy2255@gmail.com)</a></b></strong></span></address>
+         </div>
+     </div>
+    </div>
+
+      <!--This is the navigation area-->
+
+
+     <div class="navbar">
+        <ul id="list">
+            <li><a id="listitem" href="index.html" target="_parent">Home</a></li>
+            <li><a id="listitem" href="computers.html" target="_parent">About</a></li>
+            <li><a id="listitem" href="dino.html" target="_parent">Resume</a></li>
+        </ul>
+
+
+         <!--This is the search bar and sign up area-->
+
+        <div class="sbsi">
+        <div class="search">
+            <div class="searchbar" style="padding-right: 10px;">
+                <form id="sch">
+                <dfn title="search for your favourite topics"><input id="box" type="text" placeholder="Search Items" name="searchBox"></dfn>
+                </form>
+            </div>
+            <div class="signimg" style="padding-top: 2px;">
+                
+                <img src="src/images/search.png" height="30px" width="30px" onclick="">
+             
+            </div>
+            <div class="signin" style="padding-left: 13px; padding-top: 2px;">
+                <a href="signin.html"><dfn title="Sign In"><img src="src/images/refer.png" height="30px" width="30px"></dfn></a>
+            </div>
+            <div class="login" style="padding-top: 2px; padding-left: 13px;">
+                <a href="login.html"><dfn title="Log In"><img src="src/images/user.png" height="33px" width="33px"></dfn></a>
+            </div>
+        </div>
+        </div>
+        
+     </div>
+    </div>
+
+
+
+      <!--This is the main content-->
+
+  
+      <div class="topichead">
+ 
+            <div class="description">
+
+           
+
+
+           
+            <div id="quote">
+            <fieldset id="div2">
+               <div class="head2">
+                <h1 style="color: rgb(255, 255, 255); border: 4px solid rgb(116, 5, 5); padding: 10px; border-radius: 15px; background-color: rgb(116, 5, 5);font-family: 'Press Start 2P';">My most significant projects</h1>
+               </div>
+               <div class="set2">
+                <ul  class="readelement">
+                <li><a href="" target="_parent"><img id="options" style="border:3px solid black; border-radius: 15px;"  src="src/images/server.png" height="150px" width="200px"></a></li>
+                <li><a href="" target="_parent"><img id="options" style="border:3px solid black; border-radius: 15px;"  src="src/images/hemi.jpg" height="150px" width="200px"></a></li>
+                <li><a href="" target="_parent"><img id="options" style="border:3px solid black; border-radius: 15px;"  src="src/images/dinosaurium.jpg" height="150px" width="200px"></a></li>
+                <li><a href="" target="_parent"><img id="options" style="border:3px solid black; border-radius: 15px;"  src="src/images/Chemicals.jpg" height="150px" width="200px"></a></li>
+                <li><a href="" target="_parent"><img id="options" style="border:3px solid black; border-radius: 15px;"  src="src/images/javascript.jpg" height="150px" width="200px"></a></li>
+                </ul>
+               </div>
+
+                </fieldset>
+            </div>
+        
+
+            <div class="footnote">
+                
+                <ul id="foot">
+                    <li id="footele"><a href="https://www.facebook.com/profile.php?id=100069122271980" target="_parent"><img id="community" src="src/images/facebook-logo.png" height="40px" width="40px"></a></li>
+                    <li id="footele"><a href="https://www.reddit.com/" target="_parent"><img id="community" src="src/images/reddit.png" height="40px" width="40px"></a></li>
+                    <li id="footele"><a href="https://www.instagram.com/pranoydhar/" target="_parent"><img id="community" src="src/images/instagram.png" height="40px" width="40px"></a></li>
+                    <li id="footele"><a href="https://www.youtube.com/" target="_parent"><img id="community" src="src/images/youtube.png" height="40px" width="40px"></a></li>
+                </ul>
+            </div>
+
+            </div>
+
+           
+            
+     </div>
+     
+    </div>
+</body>
+</html>

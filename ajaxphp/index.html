@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ajax</title>
+		<script>
+			let xmlhttpreq=false
+			if (window.XMLHttpRequest){
+				xmlhttpreq=new XMLHttpRequest()
+			}else if (window.ActiveXObject){
+				xmlhttpreq=new ActiveXObject("Microsoft.XMLHTTP")	
+			}
+			load_data=()=>{
+			   if (xmlhttpreq){
+				let data=document.getElementById('username').value
+				if (data!=""){
+				xmlhttpreq.open("POST",'server.php?data='+data)
+				xmlhttpreq.onreadystatechange=()=>{
+					if (xmlhttpreq.readyState==4 && xmlhttpreq.status==200){
+						document.getElementById('demo').innerHTML=xmlhttpreq.responseText
+
+					}
+				}
+				}
+				}
+				xmlhttpreq.send(null)
+			}
+		</script>
+		<style>
+		@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&display=swap');
+		.container{
+				height:20rem;
+				position:relative;
+			}
+			.center{
+			  margin: 0;
+			  position: absolute;
+			  top: 70%;
+			  left:34%;
+			  -ms-transform: translateY(-50%);
+			  transform: translateY(-50%);
+			}
+			fieldset{
+				padding:2rem;
+				height:14rem;
+				width:20rem;
+				border-style:solid;
+				border-width:7px;
+				border-color:green red blue yellow;
+				border-radius:1rem;
+			}
+			.center>fieldset>input{
+				margin:0.4rem;
+				border-radius:0.5rem;
+				border-style:solid;
+				padding:1rem;
+				width:14rem;
+			}
+			.center>fieldset>button{
+				background-color:red;
+				border:none;
+				color:white;
+				font-family:'Nunito';
+				box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+				padding:0.7rem;
+				margin:0.4rem;
+			}
+			.center>fieldset>h1{
+				font-family:'Nunito';
+			}
+			#demo{
+				font-family:'Nunito';
+				padding:1rem;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class='container'>
+			<div class='center'>
+				<fieldset>
+					<h1>Ajax Form</h1>
+					<input type="text" id="username" placeholder="Type your name"><br>
+					<button type="button" id="send" onclick="load_data()">Submit</button>
+				</fieldset>
+				<div id="demo">
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+	

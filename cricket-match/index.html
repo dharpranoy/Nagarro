@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Fetch</title>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Nunito:wght@400;500&family=Source+Code+Pro:wght@700&display=swap');
+			body{
+				
+			}
+			.container{
+				display: flex;
+				justify-content: center;
+			}
+			#header{
+				font-family: 'Nunito';
+			}
+			.btn{
+				height:2rem;
+				width:9rem;
+				border:none;
+				background-color: red;
+				color:white;
+				font-family: 'Nunito';
+
+			}
+			#canva{
+				
+			}
+			#result>div{
+				font-family: 'Nunito';
+				text-align: center;
+				display: flex;
+				justify-content: center;
+				padding: 2rem;
+				border: 1px black solid;
+				margin: 2rem;
+				border-radius: 1rem;
+			}
+			#card th{
+				text-align: center;
+				padding-top: 12px;
+			  padding-bottom: 12px;
+			  text-align: left;
+			  background-color: #04AA6D;
+			  color: white;
+			}
+			
+		</style>
+		<script type="text/javascript">
+		getData=()=>{
+		let URL='https://api.cricapi.com/v1/currentMatches?apikey=79e85f9c-d23d-4147-bd12-2e533c73d284&offset=0'
+			fetch(URL,{
+				method:'GET'
+			})
+			.then(res=>res.json())
+			.then(cos=>{
+				console.log(cos.data)
+				let target = document.getElementById('result')
+				for (let i=0;i<cos.data.length;i++){
+					let ele=document.createElement('div')
+					let content = `
+					<div>
+						<h2>${cos.data[i].name}</h2>
+						<h2>${cos.data[i].status}</h2>
+						<h2>${cos.data[i].venue}</h2>
+						<img height=150 width=150 src="${cos.data[i].teamInfo[0].img}"> <h2>VS</h2> <img height=150 width=150 src="${cos.data[i].teamInfo[1].img}">
+						<table id='card'>
+							<tr>
+								<th>Points</th>
+								<th>${cos.data[i].score[0].inning}</th>
+								<th>${cos.data[i].score[1].inning}</th>
+							<tr>
+							<tr>
+								<td>Run</td>
+								<td>${cos.data[i].score[0].r}</td>
+								<td>${cos.data[i].score[1].r}</td>
+							</tr>
+							<tr>
+								<td>Wickets</td>
+								<td>${cos.data[i].score[0].w}</td>
+								<td>${cos.data[i].score[1].w}</td>
+							</tr>
+							<tr>
+								<td>Overs</td>
+								<td>${cos.data[i].score[0].o}</td>
+								<td>${cos.data[i].score[1].o}</td>
+							</tr>
+						</table>
+						</div>
+
+					`
+					ele.innerHTML=content
+					target.appendChild(ele)
+				}
+
+			})	
+		}
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div>
+			<div id="canva" >
+				<h1 id="header">API for fetching scores for Cricket matches</h1>
+				<button class='btn' type="button" onclick="getData()">Click to view scores</button>
+			</div>
+			<div id="result">
+				
+			</div>
+			</div>
+		</div>
+	</body>
+</html>

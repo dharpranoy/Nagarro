@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>POP up</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<body>
+		<div class="text-center mt-5">
+			<button type="button" class="pop">Click Me</button>
+		</div>
+		<div class="container" id="box">
+			<div class="one">
+				<h1 class="text-center">Enter details</h1>
+				<i id="close" class="fa fa-close"></i>	
+				<form action="#">
+					<div class="form-group">
+						<lebel for="username">Username</lebel>
+						<input id="uname" type="text" name="" class="form-control">
+						<p id="warn-name"></p>
+					</div>
+					<div class="form-group">
+						<lebel for="Email">Email</lebel>
+						<input type="email" id="mail" name="" class="form-control">
+						<p id="warn-mail"></p>
+					</div>
+					<input type="button" value="submit" class="btn btn-primary" id="submission">
+				</form>
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+		<script src='./script.js'></script>
+	</body>
+</html>

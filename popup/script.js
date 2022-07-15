@@ -12,11 +12,17 @@ $(document).ready(()=>{
 		if (name.length<3){
 			valid=valid&false
 			$('#warn-name').text('Invalid username')
+		}else{
+			
+			$('warn-name').text('')
 		}
 		let mail=document.getElementById('mail').value
 		if (mail.search('@gmail.com')==-1){
 			valid=valid&false
 			$('#warn-mail').text('Invalid email')
+		}else{
+		
+			$('warn-mail').text('')
 		}
 		if (valid==true){
 			$('warn-name').text('')

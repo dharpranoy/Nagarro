@@ -17,7 +17,7 @@ $(document).ready(()=>{
 			$('warn-name').text('Invalid username')
 		}
 		let mail=document.getElementById('mail').value
-		let regex='/^([\-\.0-9a-zA-Z]+)@([\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/'
+		let regex=/^([\-\.0-9a-zA-Z]+)@([\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/
 		if (mail.test(regex)){
 			valid=valid&true
 			$('#warn-mail').text('')

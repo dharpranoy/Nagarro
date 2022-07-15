@@ -7,14 +7,14 @@ $(document).ready(()=>{
 		$('#box').removeClass('show')		
 	})
 	$('#submission').click(()=>{
-		let valid=true
+		let valid=false
 		let name=document.getElementById('uname').value
-		if (name.length<3){
-			valid=valid&false
-			$('#warn-name').text('Invalid username')
+		if (name.length>3){
+			valid=valid&true
+			$('#warn-name').text('')
 		}else{
 			
-			$('warn-name').text('')
+			$('warn-name').text('Invalid username')
 		}
 		let mail=document.getElementById('mail').value
 		let regex='/^([\-\.0-9a-zA-Z]+)@([\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/'

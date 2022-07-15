@@ -1,17 +1,19 @@
 $(document).ready(()=>{
+	let valid=false
 	$('.pop').click(()=>{
+		valid=false
+		$('#name').text('')
+		$('#mail').text('')
 		$('#box').addClass('show')
 	})
 
 	$('#close').click(()=>{
 		$('#box').removeClass('show')		
 	})
-	let valid=false
 	$('#mail').keyup(()=>{
 		let mail=$('#mail').val()
-		let mail=document.getElementById('mail').value
 		let regex=/^([\-\.0-9a-zA-Z]+)@([\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/
-		if (mail.test(regex)){
+		if (regex.test(mail)){
 			valid=valid&true
 			$('#warn-mail').text('')
 		}else{

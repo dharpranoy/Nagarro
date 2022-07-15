@@ -1,8 +1,6 @@
 
 let valid=true
 let mailv=true
-$(document).ready(()=>{	
-	$('.pop').click(()=>{
 $(document).ready(()=>{
 	let valid=false
 	$('.pop').click(()=>{

@@ -17,12 +17,13 @@ $(document).ready(()=>{
 			$('warn-name').text('')
 		}
 		let mail=document.getElementById('mail').value
-		if (mail.search('@gmail.com')==-1){
-			valid=valid&false
-			$('#warn-mail').text('Invalid email')
+		let regex='/^([\-\.0-9a-zA-Z]+)@([\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/'
+		if (mail.test(regex)){
+			valid=valid&true
+			$('#warn-mail').text('')
 		}else{
 		
-			$('warn-mail').text('')
+			$('warn-mail').text('Invalid email')
 		}
 		if (valid==true){
 			$('warn-name').text('')

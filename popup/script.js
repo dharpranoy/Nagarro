@@ -13,7 +13,7 @@ $(document).ready(()=>{
 			valid=valid&true
 			$('#warn-name').text('')
 		}else{
-			
+			valid=valid&false
 			$('warn-name').text('Invalid username')
 		}
 		let mail=document.getElementById('mail').value
@@ -22,7 +22,7 @@ $(document).ready(()=>{
 			valid=valid&true
 			$('#warn-mail').text('')
 		}else{
-		
+			valid=valid&false
 			$('warn-mail').text('Invalid email')
 		}
 		if (valid==true){

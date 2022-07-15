@@ -6,16 +6,9 @@ $(document).ready(()=>{
 	$('#close').click(()=>{
 		$('#box').removeClass('show')		
 	})
-	$('#submission').click(()=>{
-		let valid=false
-		let name=document.getElementById('uname').value
-		if (name.length>3){
-			valid=valid&true
-			$('#warn-name').text('')
-		}else{
-			valid=valid&false
-			$('warn-name').text('Invalid username')
-		}
+	let valid=false
+	$('#mail').keyup(()=>{
+		let mail=$('#mail').val()
 		let mail=document.getElementById('mail').value
 		let regex=/^([\-\.0-9a-zA-Z]+)@([\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/
 		if (mail.test(regex)){
@@ -25,9 +18,21 @@ $(document).ready(()=>{
 			valid=valid&false
 			$('warn-mail').text('Invalid email')
 		}
+	}
+	$('#uname').keyup(()=>{
+		let name=$('#uname').val()
+		if (name.length>=3){
+			valid=valid&true
+			$('#warn-name').text('')
+		}else{
+			valid=valid&false
+			$('warn-name').text('Invalid username')
+		}
+	})
+	$('#submission').click(()=>{
 		if (valid==true){
-			$('warn-name').text('')
-			$('warn-mail').text('')
+			$('#uname').text('')
+			$('#mail').text('')
 			$('#box').removeClass('show')
 		}
 	})

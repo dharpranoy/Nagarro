@@ -1,0 +1,40 @@
+#slider{
+	display:flex;
+	justify-content: center;
+}
+#header{
+	text-align:center;
+}
+#right>button,#left>button{
+	margin:1rem;
+	font-size:4rem;
+	border:none;
+	position:absolute;
+	top:30%;
+	opacity:50%;
+	height:5rem;
+	background-color: black;
+	color:white;
+	transition: 0.5s;
+}
+#right>button{
+	left:64%;
+}
+#picture{
+	box-shadow: 0 17px 18px 0 rgba(0, 0, 0, 0.2), 0 16px 30px 0 rgba(0, 0, 0, 0.19);
+}
+#right>button:hover,#left>button:hover{
+	transition: 0.4s;
+	opacity: 100%;
+}
+#index{
+	border-radius:0.4rem;
+	position: absolute;
+	left:38%;
+	margin:1rem;
+	width:20rem;
+	appearance: none;
+	background: cornflowerblue;
+}
+
+

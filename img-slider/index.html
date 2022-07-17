@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Image Slider</title>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="./style.css">
+		<script type='text/javascript' src="./script.js"></script>
+	</head>
+	<body onload="loadimg()">
+		<div class="container">
+			<div id="header">
+				<h1>IMAGE SLIDER</h1>
+			</div>
+			<div id="slider">
+				<div id="left">
+					<button type="button">&#60;</button>
+				</div>
+				<div id="picture">
+					<img id="pic" src="" height="400" width="550">
+				</div>
+				<div id="right">
+					<button type="button">&#62;</button>
+				</div>
+			</div>
+			<div id="position">
+				<input type="range" min="0" max="100" step="33" value="0" id="index">
+			</div>
+		</div>
+	</body>
+</html>

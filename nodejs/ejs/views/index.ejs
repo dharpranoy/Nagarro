@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+	<title>Using ejs with nodejs</title>
+	<style>
+		table>tr>td{
+			margin:1rem;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<%- include('../tokens/main'); %>
+	</div>
+	<div>
+		<h2><%= logg %></h2>
+	</div>
+	<div>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Github</th>
+			</tr>
+			<tr>
+				<td><%= details.Name %></td>
+				<td><%= details.Email %></td>
+				<td><%= details.Github %></td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+</html>

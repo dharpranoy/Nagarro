@@ -9,10 +9,10 @@ let countryCode = "IN";
 let stateCode = "WB";
 
 let URL = `https://api.openweathermap.org/data/2.5/weather?q=${city},${stateCode},${countryCode}&units=metric&appid=${apikey}`;
-http.createServer((req,res)=>{
+http.createServer((request,response)=>{
    axios.get(URL)
   .then(response=>response.data)
-  .then(cos=>{
+  .then(data=>{
     response.write(`<html>
                        <head>
                            <title>Weather</title>

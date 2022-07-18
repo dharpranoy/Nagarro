@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="./script.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    </head>
+<body>
+    <h1><pre><span style="display: flex; justify-content: center;">This is a Web Calculator</span></pre></h1>
+    <div class="main">
+    <div class="screen" style="display: flex; justify-content: center;">
+        <textarea id="display"></textarea>
+    </div>
+        <div class="container">
+            <div class="buttons">
+                <table>
+                    <tr>
+                        <td><button onclick="action('(')" type="button" id="(">(</button></td>
+                        <td><button onclick="action(')')" type="button" id=")">)</button></td>
+                        <td><button onclick="back()" type="button" id="backspace">&larr;</button></td>
+                        <td><button onclick="action('/')" type="button" id="div">&div;</button></td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="action('7')" type="button" id="num7">7</button></td>
+                        <td><button onclick="action('8')" type="button" id="num8">8</button></td>
+                        <td><button onclick="action('9')" type="button" id="num9">9</button></td>
+                        <td><button onclick="action('*')" type="button" id="mul">&lowast;</button></td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="action('4')" type="button" id="num4">4</button></td>
+                        <td><button onclick="action('5')" type="button" id="num5">5</button></td>
+                        <td><button onclick="action('6')" type="button" id="num6">6</button></td>
+                        <td><button onclick="action('+')" type="button" id="plus">&plus;</button></td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="action('1')" type="button" id="num1">1</button></td>
+                        <td><button onclick="action('2')" type="button" id="num2">2</button></td>
+                        <td><button onclick="action('3')" type="button" id="num3">3</button></td>
+                        <td><button onclick="action('-')" type="button" id="minus">&minus;</button></td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="clean()" type="button" id="clear">C</button></td>
+                        <td><button onclick="action('0')" type="button" id="num0">0</button></td>
+                        <td><button onclick="action('.')" type="button" id="decimal">&sdot;</button></td>
+                        <td><button onclick="runcode()" type="button" id="run">&equals;</button></td>
+                    </tr>
+                   
+                </table>
+            </div>
+        </div>
+</body>
+</html>

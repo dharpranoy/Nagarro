@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Weight Converter</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<style>
+			.container{
+				position: absolute;
+				top:30%;
+				left:40%;
+			}
+			.card-img-top{
+				margin:1rem;
+			}
+		</style>
+		<script>
+			update=()=>{
+				let tag=document.getElementById('weight').value
+				document.getElementById('here').innerHTML=tag/1000+'KG'
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="card" style="width: 18rem;">
+			<div id="here" class="card-img-top" >0KG</div>
+			  <div class="card-body">
+			    <h5 class="card-title">Weight Converter</h5>
+			    <p class="card-text">
+			    <input type="text" id="weight" placeholder="Enter in grams">
+			    </p>
+			    <button onclick="update()" class="btn btn-primary">Go somewhere</button>
+			 </div>
+			</div>
+		</div>
+	</body>
+</html>

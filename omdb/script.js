@@ -6,9 +6,9 @@ get=()=>{
 	.then(cos=>{
 			let tag=document.getElementById('place')
 			tag.innerHTML=`
-				<h1>Title: ${cos.Title}</h1>
-				<h2>Year: ${cos.Year}</h2>
-				<h2>Genre: ${cos.Genre}</h2>
+				<h1>Title: ${cos[0].Title}</h1>
+				<h2>Year: ${cos[0].Year}</h2>
+				<h2>Genre: ${cos[0].Genre}</h2>
 			`
 	})
 }

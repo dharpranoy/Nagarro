@@ -1,7 +1,7 @@
 get=()=>{
 	let name=document.getElementById('na').value
 	if (name!=''){
-		let URL = `http://www.omdbapi.com/?t=${name}&apikey=2ef05862`
+		let URL = `https://www.omdbapi.com/?t=${name}&apikey=2ef05862`
 		fetch(URL)
 		.then(response=>response.json())
 		.then(cos=>{

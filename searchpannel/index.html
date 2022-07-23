@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>search</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src='./script.js'></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel='stylesheet' href='./style.css'>
+  </head>
+    <body>
+      <div class='container'>
+      <h1 id='head'>Search Pannel</h1>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Add user</h5>
+          <input type='text' placeholder='Name' id='name' class='form-control'>
+          <button id='add' class="btn btn-primary">Add</a>
+        </div>
+      </div>
+      <div class="input-group flex-nowrap">
+        <input type="text" id='search' class="form-control" placeholder="Start Typing..." aria-label="Username" aria-describedby="addon-wrapping">
+        <button class="btn btn-outline-danger">Type to Search</button>
+      </div>
+
+      <div class='lists'>
+        <ul class="list-group" id='users'>
+        </ul>
+      </div>
+      </div>
+    </body>
+</html>
+

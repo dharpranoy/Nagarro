@@ -1,0 +1,13 @@
+.container{
+	display:flex;
+	justify-content: center;
+}
+.main{
+	margin:3rem;
+}
+#reg{
+	border-radius:1rem;
+	color:white;
+	padding:2rem;
+	background:#dc3545;
+}

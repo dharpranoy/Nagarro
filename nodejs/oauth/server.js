@@ -17,26 +17,19 @@ app.use(session({
        resave:true,
        saveUninitialized:true
 }))
-app.use(express.static(path.join(__dirname+'/public')))
+app.use(express.static(path.join(__dirname,'/public')))
 app.use(passport.initialize());
 app.use(passport.session());
 let conn = sql.createConnection({
 	host:'localhost',
 	user:'root',
-	password:'localmux@34',
+	password:'mysql#pypi',
 	database:'passport'
 })
 conn.connect(err=>{
 	if (err) throw err
 	console.log('connected')
 })
-const user = {
-  username: 'testuser',
-  email: 'dharpranoy2255@gmail.com',
-  passwordHash: 'crypto',
-  id: 1
-}
-
 passport.use(new LocalStrategy(
 	{
 		usernameField:'email',
@@ -53,19 +46,48 @@ passport.use(new LocalStrategy(
 			bcrypt.compare(password,result[0].password,(error,pass)=>{
 				if (error) return done(error)
 				if (pass==false) return done(null)
-				return done(null,result)
+				return done(null,result[0])
 			})
 		})
 	}	
 ))
+passport.serializeUser((user,done)=>{
+	done(null,user.email)
+})
+passport.deserializeUser((user,done)=>{
+	return done(null,user)
+})
+app.get('/',(req,res)=>{
+	res.redirect('/login')
+})
 app.get('/login',(req,res)=>{
 	res.render('login')
 })
 app.post('/login/password',passport.authenticate('local',{failureRedirect:'/login'}),(req,res)=>{
-	res.send('Successfully logged in')
+	res.render('logout')
+})
+app.post('/login/register',(req,res)=>{
+	let name = req.body.username
+	let mail = req.body.email
+	let password = req.body.password
+	bcrypt.hash(password,10)
+	.then(hashed=>{
+		conn.query(`INSERT INTO auth VALUES ('${name}','${hashed}','${mail}')`,(err,result)=>{
+			if (err) throw err
+			res.redirect('/login/password')
+		})
+	})
+
 })
 app.get('/dashboard',ensureLogin.ensureLoggedIn(),(req,res)=>{
-	res.send('secret page')
+	console.log(req.user)
+	res.render('secret',{
+		name:req.user
+	})
+})
+app.get('/logout',ensureLogin.ensureLoggedIn(),(req,res)=>{
+		req.logout()
+		res.redirect('/')
 })
 app.listen(5400,()=>{
 	console.log('server started at 5400')

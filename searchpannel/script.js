@@ -23,11 +23,8 @@ query=(word,root)=>{
   let match=[]
   let ans=''
   for (c of word){
-    ans+=c
     if (c in head.children){
-      if (head.end==true){
-        match.push(ans)
-      }
+      ans+=c
       head=head.children[c]
     }else{
       return []

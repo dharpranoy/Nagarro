@@ -1,0 +1,39 @@
+.top{
+    margin:1rem;
+}
+#tpp{
+    border-radius: 0.6rem;
+}
+#con>ul>li{
+    color: white;
+}
+#main{
+    display: flex;
+    justify-content: baseline;
+}
+#main>div{
+    margin:2rem;
+}
+#main>div>img{
+    border:2px solid black;
+}
+#skills{
+    display:flex;
+    justify-content: space-around;
+}
+#skills>div>ul{
+    list-style: none;
+}
+#hd{
+    color:white;
+    background: #6f42c1;
+}
+#edu{
+    margin:2rem;
+}
+#edu>h1{
+    color:white;
+    border-radius:0.4rem;
+    background: #0d6efd;
+    padding:0.6rem;
+}

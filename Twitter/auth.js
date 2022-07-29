@@ -1,8 +1,19 @@
 const passport = require('passport')
+const bcrypt = require('bcrypt')
 const LocalStrategy = require('passport-local').Strategy
 const GoogleStrategy = require('passport-google-oauth2').Strategy
-const GithubStrategy = require('passport-github-oauth2').Strategy
-import './db'
+//const GithubStrategy = require('passport-github-oauth2').Strategy
+const sql = require('mysql')
+let conn = sql.createConnection({
+	host:'localhost',
+	user:'root',
+	password:'mysql#pypi',
+	database:'passport'
+})
+conn.connect(err=>{
+	if (err) throw err
+	console.log('connected')
+})
 passport.use(new LocalStrategy(
 	{
 		usernameField:'email',
@@ -28,7 +39,8 @@ passport.use(new GoogleStrategy({
 		clientID: '32532849948-3hkscs2ljkdnh09h13rdobt1cchpqk2j.apps.googleusercontent.com',
 		clientSecret: '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',
 		callbackURL: 'http://localhost:8080/auth/google/callback',
-		passReqToCallback: true
+		passReqToCallback: true,
+		scope : ['profile','email']
 	},
 	(req,accessToken,refreshToken,profile,done)=>{
 		return done(null,profile)

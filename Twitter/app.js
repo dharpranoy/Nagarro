@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const sql = require('mysql')
 const bodyParser = require('body-parser')
 const multer = require('multer')()
 const session = require('express-session')
@@ -19,6 +20,16 @@ app.use(session({
 app.use(express.static(path.join(__dirname,'/public')))
 app.use(passport.initialize());
 app.use(passport.session());
+let conn = sql.createConnection({
+	host:'localhost',
+	user:'root',
+	password:'mysql#pypi',
+	database:'passport'
+})
+conn.connect(err=>{
+	if (err) throw err
+	console.log('connected')
+})
 passport.serializeUser((user,done)=>{
 	done(null,user)
 })
@@ -39,7 +50,7 @@ app.post('/login/register',(req,res)=>{
 	.then(hashed=>{
 		conn.query(`INSERT INTO auth VALUES ('${name}','${hashed}','${mail}')`,(err,result)=>{
 			if (err) throw err
-			res.redirect('/login/password')
+			res.redirect('/dashboard')
 		})
 	})
 

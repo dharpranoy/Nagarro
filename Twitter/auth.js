@@ -2,7 +2,7 @@ const passport = require('passport')
 const bcrypt = require('bcrypt')
 const LocalStrategy = require('passport-local').Strategy
 const GoogleStrategy = require('passport-google-oauth2').Strategy
-//const GithubStrategy = require('passport-github-oauth2').Strategy
+const GithubStrategy = require('passport-github2').Strategy
 const sql = require('mysql')
 let conn = sql.createConnection({
 	host:'localhost',
@@ -46,4 +46,4 @@ passport.use(new GoogleStrategy({
 		return done(null,profile)
 	}
 ))
-
+module.exports = conn

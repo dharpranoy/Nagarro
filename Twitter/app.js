@@ -8,7 +8,7 @@ const session = require('express-session')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const ensureLogin = require('connect-ensure-login')
-require('./auth.js')
+let conn = require('./auth.js')
 app.set('views','views')
 app.set('view engine','ejs')
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,16 +20,7 @@ app.use(session({
 app.use(express.static(path.join(__dirname,'/public')))
 app.use(passport.initialize());
 app.use(passport.session());
-let conn = sql.createConnection({
-	host:'localhost',
-	user:'root',
-	password:'mysql#pypi',
-	database:'passport'
-})
-conn.connect(err=>{
-	if (err) throw err
-	console.log('connected')
-})
+
 passport.serializeUser((user,done)=>{
 	done(null,user)
 })

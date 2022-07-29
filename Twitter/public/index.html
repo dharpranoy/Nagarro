@@ -18,13 +18,22 @@
                     </div>
                     <div id='options'>
                         <div id='cred'>
-                            <button><img src='google.png' height=20 width=20>Sign in with google</button><br>
-                            <button><img src='apple-logo.png' height=20 width=20>Sign in with apple</button><br>
+                            <form method='get' action='/auth/google'>
+                                <button type='submit'><img src='./src/google.png' height=20 width=20>Sign in with google</button><br>
+                            </form>
+                            <form method='get' action='/auth/github/callback'>
+                                <button><img src='./src/apple-logo.png' height=20 width=20>Sign in with apple</button><br>
+                            </form>
                             <button>or</button>
-                            <button id='mann'>Sign up with phone or email</button>
+                            <form method='get' action='/login'>
+                                <button type='submit' id='mann'>Sign up with phone or email</button>
+                            </form>
                         </div>
                          <div id='ald'>
-                            <h3>Already have an account ?</h3><button>sign in</button>
+                            <h3>Already have an account ?</h3>
+                            <form action='/login'>
+                                <button>sign in</button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -20,6 +20,14 @@ body{
 #cred>button>img{
     margin-right:2rem;
 }
+#cred>form>button{
+    cursor:pointer;
+    height:2.7rem;
+    margin:0.2rem;
+    width:17rem;
+    border:1px solid white;
+    border-radius:4rem;
+}
 #terms{
     font-size:12px;
 }
@@ -34,7 +42,7 @@ body{
     border:1px solid white;
     border-radius:4rem;
 }
-#ald>button{
+#ald>form>button{
     cursor:pointer;
     height:2.7rem;
     width:17rem;

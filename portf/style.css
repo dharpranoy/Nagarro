@@ -37,3 +37,13 @@
     background: #0d6efd;
     padding:0.6rem;
 }
+#projects{
+    margin:2rem;
+}
+#projects>h1{
+	color:white;
+    border-radius:0.4rem;
+    background: #0d6efd;
+    padding:0.6rem;
+
+}

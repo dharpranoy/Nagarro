@@ -4,6 +4,9 @@ const secretkey = 'sk_test_51LSa6VSE7l0ULveF2DtBU7S3A7XjwnJQQC1Eu8VHrIodwSoAzDom
 const stripe = require('stripe')(secretkey)
 const bodyparser = require('body-parser')
 const path = require('path')
+const ejs = require('ejs')
+app.set('views','./views')
+app.set('view engine','ejs')
 app.use(bodyparser.urlencoded({extended:true}))
 app.use(express.static(path.join(__dirname,'./public')))
 app.post('/charge',(req,res)=>{
@@ -17,7 +20,7 @@ app.post('/charge',(req,res)=>{
 		.then((customer)=>{
 			stripe.charges.create({
 				amount:req.body.amount,
-				currency:'inr',
+				currency:'INR',
 				customer:customer.id
 			})
 		})

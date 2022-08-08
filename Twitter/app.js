@@ -8,7 +8,7 @@ const session = require('express-session')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const ensureLogin = require('connect-ensure-login')
-require('./routes/auther.js')
+const auth = require('./routes/auther.js')
 app.set('views','views')
 app.set('view engine','ejs')
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,6 +20,7 @@ app.use(session({
 app.use(express.static(path.join(__dirname,'/public')))
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/',auth)
 passport.serializeUser((user,done)=>{
 	done(null,user)
 })

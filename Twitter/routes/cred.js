@@ -4,10 +4,11 @@ const LocalStrategy = require('passport-local').Strategy
 const GoogleStrategy = require('passport-google-oauth2').Strategy
 const GithubStrategy = require('passport-github2').Strategy
 const sql = require('mysql')
+require('dotenv').config()
 let conn = sql.createConnection({
 	host:'localhost',
 	user:'root',
-	password:'mysql#pypi',
+	password:process.env.PSSWD1,
 	database:'passport'
 })
 conn.connect(err=>{

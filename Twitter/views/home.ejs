@@ -9,11 +9,12 @@
     <div class='container'>
       <div class='main'>
         <div id='header'>
+	<img id="logo" src='./src/twitter.png' height="35" width="35">
           <div id='opt'>
             <ul>
               <li>
                 <button>
-                  <img src='/src/home.png' height=30 width=30> 
+                  <img src='./src/home.png' height=30 width=30> 
                   <p>home</p>
                 </button>
               </li>
@@ -62,14 +63,31 @@
             </ul>
           </div>
           <div id='tweet'>
-            <button>Tweet</button>
+		  <button><b>Tweet</b></button>
           </div>
           <div id='profile'>
             <button><%= username %></button>
           </div>
         </div>
-        <div id='content'></div>
-        <div id='search'></div>
+        <div id='content'>
+		<h2>Home</h2>
+		<div id="header">
+			<img src='./src/image.png' height="40" width="40">
+			<input type="text" placeholder="What's happening?">
+			<div id="inputln">
+				<ul id="input">
+					<li><img src="./src/image.png" height="25" width="25" alt="image"></li>
+					<li><img src="./src/statistics.png" height="25" width="25" alt="poll"></li>
+					<li><img src="./src/happy.png" height="25" width="25" alt="emoji"></li>
+				</ul>
+				<button>Tweet</button>
+			</div>
+		</div>
+		<div id="colon"></div>
+	</div>
+        <div id='search'>
+		<input type="text" placeholder="search">
+	</div>
       </div>
     </div>
   </body>

@@ -1,6 +1,15 @@
+body{
+	margin:auto;
+}
 .main{
   display:flex;
   justify-content:baseline;
+}
+#header{
+	margin:1rem;
+}
+#logo{
+	padding-left:3.3rem;
 }
 #opt>ul{
   list-style:none;
@@ -34,3 +43,41 @@
 #tweet>button{
   border-radius:0.9rem;
 }
+#content{
+	width:auto;
+	align-items: left;
+}
+#content>h2{
+	padding:none;
+	margin:none;
+}
+#input{
+	list-style: none;
+	display:flex;
+	justify-content: space-evenly;
+	margin:1rem;
+}
+#input>li{
+	padding:0.3rem;
+}
+#inputln>button{
+	height:3rem;
+	width:5rem;
+	border:none;
+	border-radius:7rem;
+	background-color:#1DA1F2;
+	color:white;
+}
+#inputln{
+	display: flex;
+	justify-content: space-between;
+}
+#header>input{
+	font-size:1.3rem;
+	border:none;
+	height:40px;
+	padding:1rem;
+	margin:0.8rem;
+	outline:none;
+}
+

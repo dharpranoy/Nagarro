@@ -6,12 +6,15 @@ const LocalStrategy = require('passport-local').Strategy
 const GoogleStrategy = require('passport-google-oauth2').Strategy
 const GithubStrategy = require('passport-github2').Strategy
 const ensureLogin = require('connect-ensure-login')
+const path = require('path')
+const fs = require('fs')
+let axios = require('axios')
 let conn = require('./cred')
 router.get('/login',(req,res)=>{
 	res.render('login')
 })
 router.post('/login/password',passport.authenticate('local',{failureRedirect:'/login'}),(req,res)=>{
-	res.render('logout')
+	res.redirect('/dashboard')
 })
 router.post('/login/register',(req,res)=>{
 	let name = req.body.username
@@ -37,10 +40,23 @@ router.get('/auth/google/callback',
         failureRedirect: '/'
 }));
 router.get('/dashboard',ensureLogin.ensureLoggedIn(),(req,res)=>{
-	console.log(req.user.displayName)
-	res.render('home',{
-		'username':req.user.displayName
-	})
+	if (req.user.displayName!=null){
+		axios.get(`${req.user.picture}`)
+		.then(res=>res.data)
+		.then(data=>{
+			console.log(data)
+		})
+		res.render('home',{
+			'username':req.user.displayName,
+			'displaypicture':req.user.picture
+		})
+	}
+	if (req.user.username!=null){
+		res.render('home',{
+			'username':req.user.username,
+			'displaypicture':'./src/x.jpg'
+		})
+	}
 })
 router.get('/logout',ensureLogin.ensureLoggedIn(),(req,res)=>{
 		req.logout((err)=>{

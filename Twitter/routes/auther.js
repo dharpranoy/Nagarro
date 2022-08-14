@@ -38,7 +38,9 @@ router.get('/auth/google/callback',
 }));
 router.get('/dashboard',ensureLogin.ensureLoggedIn(),(req,res)=>{
 	console.log(req.user.displayName)
-	res.render('logout')
+	res.render('home',{
+		'username':req.user.displayName
+	})
 })
 router.get('/logout',ensureLogin.ensureLoggedIn(),(req,res)=>{
 		req.logout((err)=>{

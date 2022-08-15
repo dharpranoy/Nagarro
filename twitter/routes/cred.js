@@ -8,7 +8,7 @@ require('dotenv').config()
 let conn = sql.createConnection({
 	host:'localhost',
 	user:'root',
-	password:process.env.PSSWD2,
+	password:process.env.PSSWD1,
 	database:'passport'
 })
 conn.connect(err=>{

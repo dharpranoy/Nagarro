@@ -2,53 +2,55 @@
 <html>
   <head>
     <title>Home</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel='stylesheet' href='./style.css'>
-    <script src='./script.js'></script>
+    <script src='./home.js'></script>
   </head>
   <body>
     <div class='container'>
       <div class='main'>
         <div id='header'>
+	  <img id="logo" src='./src/twitter.png' height="35" width="35">
           <div id='opt'>
             <ul>
               <li>
-                <button>
-                  <img src='/src/home.png' height=30 width=30> 
-                  <p>home</p>
+                <button id="tohome">
+                  <img src='./src/home.png' height=30 width=30> 
+                  <p>Home</p>
                 </button>
               </li>
               <li>
-                <button>
+                <button id="toexplore">
                   <img src='./src/explore.png' height=30 width=30> 
                   <p>Explore</p>
                 </button>
               </li>
               <li>
-                <button>
+                <button id="tonotification">
                   <img src='./src/notification.png' height=30 width=30> 
                   <p>Notification</p>
                 </button>
               </li>
               <li>
-                <button>
+                <button id="tomessage">
                   <img src='./src/email.png' height=30 width=30> 
                   <p>messages</p>
                 </button>
               </li>
               <li>
-                <button>
+                <button id="tobookmark">
                   <img src='./src/bookmark-white.png' height=30 width=30> 
                   <p>Bookmarks</p>
                 </button>
               </li>
               <li>
-                <button>
+                <button id="tolist">
                   <img src='./src/list.png' height=30 width=30> 
                   <p>Lists</p>
                 </button>
               </li>
               <li>
-                <button>
+                <button id="toprofile">
                   <img src='./src/user.png' height=30 width=30> 
                   <p>Profile</p>
                 </button>
@@ -62,14 +64,21 @@
             </ul>
           </div>
           <div id='tweet'>
-            <button>Tweet</button>
+		  <button><b>Tweet</b></button>
           </div>
           <div id='profile'>
-            <button><%= username %></button>
+		  <h2 id="curruser" ><%= username %></h2>
+		  <form action="logout" method="GET">	
+		  	<button type="submit" id="logout">Logout</button>
+		  </form>
+
           </div>
         </div>
-        <div id='content'></div>
-        <div id='search'></div>
+        <div id='content'>
+	</div>
+        <div id='search'>
+		<input type="text" placeholder="search">
+	</div>
       </div>
     </div>
   </body>

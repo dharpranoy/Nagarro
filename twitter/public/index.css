@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&family=Source+Sans+Pro:wght@600&display=swap');
+body{
+    margin:auto;
+    padding:none;
+}
+.main{
+    display:flex;
+    justify-content: baseline;
+}
+#page>div{
+    font-family: 'Source Sans Pro';
+    margin:1.7rem;
+}
+#page>div>h1{
+    font-size:4rem;
+}
+#page>div>h2{
+    font-size:3rem;
+}
+#cred>button>img{
+    margin-right:2rem;
+}
+#cred>form>button{
+    cursor:pointer;
+    height:2.7rem;
+    margin:0.2rem;
+    width:17rem;
+    border:1px solid white;
+    border-radius:4rem;
+}
+#terms{
+    font-size:12px;
+}
+#or{
+    padding-left:8rem; 
+}
+#cred>button{
+    cursor:pointer;
+    height:2.7rem;
+    margin:0.2rem;
+    width:17rem;
+    border:1px solid white;
+    border-radius:4rem;
+}
+#ald>form>button{
+    cursor:pointer;
+    height:2.7rem;
+    width:17rem;
+    color:#1DA1F2;
+    border-radius:4rem;
+    text-align:center;
+}
+#mann{
+    background: #1DA1F2;
+    color:white;
+    font-size:1rem;
+    border:none;
+}
+#ald>h3{
+   align-content: center;
+    padding:1rem;
+}
+#bottom>ul{
+    font-size:0.95rem;
+    list-style: none;
+    display: flex;
+    justify-content: baseline;
+}
+#bottom>ul>li{
+    cursor:pointer;
+    margin:0.3rem;
+    
+}

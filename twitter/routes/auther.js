@@ -8,6 +8,7 @@ const GithubStrategy = require('passport-github2').Strategy
 const ensureLogin = require('connect-ensure-login')
 const path = require('path')
 const fs = require('fs')
+const crypto = require('crypto')
 let axios = require('axios')
 let conn = require('./cred')
 router.get('/login',(req,res)=>{
@@ -59,8 +60,24 @@ router.get('/dashboard',ensureLogin.ensureLoggedIn(),(req,res)=>{
 	}
 })
 router.get('/logout',ensureLogin.ensureLoggedIn(),(req,res)=>{
-		req.logout((err)=>{
-		})
-		res.redirect('/')
+	req.logout(err=>{
+		if (err) throw err
+	})	
+	res.redirect('/')
+})
+router.post('/addtweet',(req,res)=>{
+	let uuid = crypto.randomUUID()
+	let txt = req.body.txt
+	console.log(req.body)
+	let img = ""
+	let qr = `INSERT INTO tweets VALUES('${uuid}','${req.user.email}','${txt}','')`
+	conn.query(qr,(err,result)=>{
+		if (err) throw err
+		let obj = {
+			'uuid':`${uuid}`,
+			'username':`${req.user.username}`
+		}
+		res.send(obj)
+	})
 })
 module.exports = router

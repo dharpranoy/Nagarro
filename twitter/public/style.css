@@ -44,8 +44,10 @@ body{
   border-radius:0.9rem;
 }
 #content{
-	width:auto;
-	align-items: left;
+	overflow:hidden;
+	padding-left:3rem;
+	padding-right:3rem;
+	width:45vw;
 }
 #content>h2{
 	padding:none;
@@ -68,6 +70,9 @@ body{
 	background-color:#1DA1F2;
 	color:white;
 }
+#fim{
+	cursor: pointer;
+}
 #inputln{
 	display: flex;
 	justify-content: space-between;
@@ -75,9 +80,13 @@ body{
 #header>input{
 	font-size:1.3rem;
 	border:none;
-	height:40px;
+	word-wrap: break-word;
+	width:30rem;
 	padding:1rem;
 	margin:0.8rem;
 	outline:none;
+}
+#addimg,#createpoll,#addemo,#addtweet{
+	cursor:pointer;
 }
 

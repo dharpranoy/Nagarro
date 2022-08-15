@@ -45,11 +45,10 @@ router.get('/dashboard',ensureLogin.ensureLoggedIn(),(req,res)=>{
 		axios.get(`${req.user.picture}`)
 		.then(res=>res.data)
 		.then(data=>{
-			console.log(data)
-		})
-		res.render('home',{
-			'username':req.user.displayName,
-			'displaypicture':req.user.picture
+			res.render('home',{
+				'username':req.user.displayName,
+				'displaypicture':data
+			})
 		})
 	}
 	if (req.user.username!=null){
@@ -68,14 +67,22 @@ router.get('/logout',ensureLogin.ensureLoggedIn(),(req,res)=>{
 router.post('/addtweet',(req,res)=>{
 	let uuid = crypto.randomUUID()
 	let txt = req.body.txt
-	console.log(req.body)
 	let img = ""
-	let qr = `INSERT INTO tweets VALUES('${uuid}','${req.user.email}','${txt}','')`
+	let name = req.user.username || req.user.displayName
+	let qr = `INSERT INTO tweets VALUES("${uuid}","${req.user.email}","${txt}","",CURTIME(),CURDATE())`
 	conn.query(qr,(err,result)=>{
 		if (err) throw err
+	})
+	let sel = `SELECT * FROM tweets WHERE uid='${uuid}'`
+	conn.query(sel,(err,result)=>{
+		if (err) throw err
+		console.log(result)
 		let obj = {
+			'username':`${name}`,
 			'uuid':`${uuid}`,
-			'username':`${req.user.username}`
+			'email':`${result[0].email}`,
+			'time':`${result[0].post}`,
+			'date':`${result[0].dates}`
 		}
 		res.send(obj)
 	})

@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=IBM+Plex+Sans&family=Nunito:wght@400;500&family=Source+Code+Pro:wght@700&display=swap');
 body{
+	font-family: 'IBM Plex Sans';
 	margin:auto;
 }
 .main{
@@ -44,10 +46,14 @@ body{
   border-radius:0.9rem;
 }
 #content{
-	overflow:hidden;
+	overflow:scroll;
+	height:100vh;
 	padding-left:3rem;
 	padding-right:3rem;
 	width:45vw;
+}
+#content::-webkit-scrollbar{
+	display:none;
 }
 #content>h2{
 	padding:none;
@@ -89,4 +95,28 @@ body{
 #addimg,#createpoll,#addemo,#addtweet{
 	cursor:pointer;
 }
-
+#ttn{
+	margin:2rem;
+}
+#twinfo{
+	margin:1rem;
+}	
+#ttn>div{
+	margin:0.5rem;
+}
+#profilebtn{
+	cursor:pointer;
+	border:none;
+	font-weight: bold;
+	font-size:1rem;
+}
+#comment{
+	cursor:pointer;
+	border:none;
+	background: none;
+}
+#like{
+	cursor:pointer;
+	border:none;
+	background:none;
+}

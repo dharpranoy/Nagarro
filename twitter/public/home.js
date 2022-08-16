@@ -53,20 +53,37 @@ $(document).ready(()=>{
             cbtn.innerHTML = "<img src='./src/comment.png' height=24 width=24>"
             let lbtn = document.createElement('button')
             lbtn.setAttribute('id', 'like')
-            lbtn.innerHTML = "<img src='./src/heartno.png' height=20 width=20>"
-            lbtn.addEventListener('click', ()=>{
-                if (lbtn.firstElementChild.getAttribute('src')=="./src/heart.png"){
-                    lbtn.firstElementChild.setAttribute('src', "./src/heartno.png")
-                }else{
-                    lbtn.firstElementChild.setAttribute('src', "./src/heart.png")
-                }
-
-            })
-            intr.appendChild(cbtn)
-            intr.appendChild(lbtn)
-            div.appendChild(intr)
-            div.insertBefore(indiv, div.children[0])
-            $('#colon').prepend(div)
+          	let path = 'heartno'
+          	let cnt = 0
+          	fetch(`/chklike?id=${cos[i].uid}`,{
+          		method:'GET'
+          	})
+          	.then(res=>res.json())
+          	.then(count=>{
+								if (count.set==true) path = 'heart'
+								cnt=count.cnt
+								console.log(cnt,path)
+								lbtn.innerHTML = `<img src='./src/${path}.png' height=20 width=20>  ${cnt}`
+            		lbtn.addEventListener('click', ()=>{
+            	  		let token = "is"
+                		if (lbtn.firstElementChild.getAttribute('src')=="./src/heart.png"){
+                    		lbtn.firstElementChild.setAttribute('src', "./src/heartno.png")
+                  			token="no"
+                		}else{
+                				token="is"
+                    		lbtn.firstElementChild.setAttribute('src', "./src/heart.png")
+                		}
+										fetch(`/like?q=${token}&id=${cos[i].uid}`,{
+											method:'GET'
+										})
+            		})
+            		intr.appendChild(cbtn)
+            		intr.appendChild(lbtn)
+            		div.appendChild(intr)
+            		div.insertBefore(indiv, div.children[0])
+            		$('#colon').prepend(div)
+          	})
+            
         }
     }
 

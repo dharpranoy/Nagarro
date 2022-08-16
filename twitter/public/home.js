@@ -3,37 +3,93 @@ loadfile=(event)=>{
 	image.src = URL.createObjectURL(event.target.files[0])
 }
 $(document).ready(()=>{
-    $('#content').html(`
-        <h2>Home</h2> 
-        <div id="header">
-            <img src='<%= displaypicture %>' height="40" width="40">
-            <input type="text" id="tw" placeholder="What's happening?">
-            <div id="twimg">
-                <img id="output">
-            </div>
-            <div id="inputln">
-            <ul id="input">
-              <li id="addimg">
-                <input type="file" id="file" onchange="loadfile(event)" hidden>
-                <label for="file">
-                <img id="fim" src="./src/image.png" height="25" width="25" alt="image">
-                </label>
-              </li>
-            <li id="createpoll" ><img src="./src/statistics.png" height="25" width="25" alt="poll"></li>
-            <li id="addemo" ><img src="./src/happy.png" height="25" width="25" alt="emoji"></li>
-            </ul>
-            <button id="addtweet">Tweet</button>
-            </div>
-        </div>
-        <div id="colon">
-                
-        </div>
+    maketweet=(cos)=>{
+        console.log(cos)
+        for (let i=0;i<cos.length;i++){
+            $('#tw').val('')
+            let div = document.createElement('div')
+            div.setAttribute('id', 'ttn')
+            let indiv = document.createElement('div')
+            indiv.setAttribute('id', 'twinfo')
+            let img = document.createElement('img')
+            img.setAttribute('src', './src/image.png')
+            img.setAttribute('height', '30')
+            img.setAttribute('width', '30')
+            indiv.appendChild(img)
+            let button = document.createElement('button')
+            button.setAttribute('id', 'profilebtn')
+            button.innerHTML=cos[i].username
+            button.addEventListener('click', ()=>{
+                fetch(`/profview?mail=${cos[i].email}`,{
+                    method:'GET'
+                })
+                .then(res=>res.json())
+                .then(cr=>{
+                    
+                })
+            })
+            indiv.appendChild(button)
+            let p = document.createElement('p')
+            p.innerHTML=`
+                <p>${cos[i].uid}</p>
+                <p>${cos[i].post} ${cos[i].dates}</p>
 
-	`)
+            `
+            indiv.appendChild(p)
+            let inner = `
+                <div id='twcont'>
+                    <p>${cos[i].txt}</p>
+                </div>
+                <div id='interactions'>
+                <button id='comment'></button>
+                <button id='like'></button>
+                </div>
+            `
+            div.innerHTML = inner
+            let intr = document.createElement('div')
+            intr.setAttribute('id', 'interactions')
+            let cbtn = document.createElement('button')
+            cbtn.setAttribute('id', 'comment')
+            cbtn.innerHTML = "<img src='./src/comment.png' height=24 width=24>"
+            let lbtn = document.createElement('button')
+            lbtn.setAttribute('id', 'like')
+            lbtn.innerHTML = "<img src='./src/heartno.png' height=20 width=20>"
+            lbtn.addEventListener('click', ()=>{
+                if (lbtn.firstElementChild.getAttribute('src')=="./src/heart.png"){
+                    lbtn.firstElementChild.setAttribute('src', "./src/heartno.png")
+                }else{
+                    lbtn.firstElementChild.setAttribute('src', "./src/heart.png")
+                }
+
+            })
+            intr.appendChild(cbtn)
+            intr.appendChild(lbtn)
+            div.appendChild(intr)
+            div.insertBefore(indiv, div.children[0])
+            $('#colon').prepend(div)
+        }
+    }
+
+    fetch('/recent',{
+        method:'GET'
+    })
+    .then(res=>res.json())
+    .then(cr=>{
+        maketweet(cr)
+    })
+
+
+    /*
     #('#tohome').click(()=>{
         
     })
-	$('#addtweet').click(()=>{
+    #('#toexplore').click(()=>{
+        
+    })
+    #('#tonotification').click(()=>{
+        
+    })*/
+    $('#addtweet').click(()=>{
 		let area = $('#tw').val()
 		let obj = {
 			'txt':`${area}`
@@ -46,47 +102,7 @@ $(document).ready(()=>{
 			})
 			.then(res=>res.json())
 			.then(cos=>{
-				$('#tw').val('')
-				let div = document.createElement('div')
-				div.setAttribute('id', 'ttn')
-				let indiv = document.createElement('div')
-				indiv.setAttribute('id', 'twinfo')
-				let img = document.createElement('img')
-				img.setAttribute('src', './src/image.png')
-				img.setAttribute('height', '30')
-				img.setAttribute('width', '30')
-				indiv.appendChild(img)
-				let button = document.createElement('button')
-				button.setAttribute('id', 'profilebtn')
-				button.innerHTML=cos.username
-				button.addEventListener('click', ()=>{
-					fetch('/profview',{
-						method:'POST',
-						body:`${cos.email}`
-					})
-					.then()
-				})
-				indiv.appendChild(button)
-			  	let p = document.createElement('p')
-				p.innerHTML=`
-					<p>${cos.uuid}</p>
-					<p>${cos.time} ${cos.date}</p>
-
-				`
-				indiv.appendChild(p)
-				let inner = `
-					<div id='twcont'>
-						<p>${area}</p>
-					</div>
-					<div id='interactions'>
-					<button id='comment'><img src='./src/heart (1).png' height=20 width=20></button>
-					<button id='like'><img src='./src/comment.png' height=24 width=24></button>
-					</div>
-				`
-				div.innerHTML = inner
-				div.insertBefore(indiv, div.children[0])
-				$('#colon').prepend(div)
-
+			    maketweet(cos)	
 			})
 		}
 	})

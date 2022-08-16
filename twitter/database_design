@@ -1,5 +1,4 @@
-Passport.JS Local Authentication
-
+auth
 +----------+--------------+------+-----+---------+-------+
 | Field    | Type         | Null | Key | Default | Extra |
 +----------+--------------+------+-----+---------+-------+
@@ -9,8 +8,7 @@ Passport.JS Local Authentication
 +----------+--------------+------+-----+---------+-------+
 
 
-user information
-
+users
 +----------+--------------+------+-----+---------+-------+
 | Field    | Type         | Null | Key | Default | Extra |
 +----------+--------------+------+-----+---------+-------+
@@ -20,29 +18,22 @@ user information
 +----------+--------------+------+-----+---------+-------+
 
 
-Tweets
+tweets
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| uid      | varchar(255)  | NO   | PRI | NULL    |       |
+| email    | varchar(255)  | NO   |     | NULL    |       |
+| txt      | varchar(1000) | YES  |     | NULL    |       |
+| img      | varchar(255)  | YES  |     | NULL    |       |
+| post     | time          | YES  |     | NULL    |       |
+| dates    | date          | YES  |     | NULL    |       |
+| username | varchar(255)  | NO   |     | NULL    |       |
++----------+---------------+------+-----+---------+-------+
 
-+-------+---------------+------+-----+---------+-------+
-| Field | Type          | Null | Key | Default | Extra |
-+-------+---------------+------+-----+---------+-------+
-| uid   | varchar(255)  | NO   | PRI | NULL    |       |
-| email | varchar(255)  | NO   |     | NULL    |       |
-| txt   | varchar(1000) | YES  |     | NULL    |       |
-| img   | varchar(255)  | YES  |     | NULL    |       |
-| post  | time          | YES  |     | NULL    |       |
-| dates | date          | YES  |     | NULL    |       |
-+-------+---------------+------+-----+---------+-------+
 
-Followers and Following
- 
-+---------+--------------+------+-----+---------+----------------+
-| Field   | Type         | Null | Key | Default | Extra          |
-+---------+--------------+------+-----+---------+----------------+
-| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
-| current | varchar(255) | NO   |     | NULL    |                |
-| users   | varchar(255) | NO   |     | NULL    |                |
-+---------+--------------+------+-----+---------+----------------+
- 
+
+followers
 +---------+--------------+------+-----+---------+----------------+
 | Field   | Type         | Null | Key | Default | Extra          |
 +---------+--------------+------+-----+---------+----------------+
@@ -51,7 +42,17 @@ Followers and Following
 | users   | varchar(255) | NO   |     | NULL    |                |
 +---------+--------------+------+-----+---------+----------------+
 
-Likes
+
+followings
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| current | varchar(255) | NO   |     | NULL    |                |
+| users   | varchar(255) | NO   |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+
+likes
 +-------+--------------+------+-----+---------+-------+
 | Field | Type         | Null | Key | Default | Extra |
 +-------+--------------+------+-----+---------+-------+

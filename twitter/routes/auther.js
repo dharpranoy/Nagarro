@@ -69,22 +69,41 @@ router.post('/addtweet',(req,res)=>{
 	let txt = req.body.txt
 	let img = ""
 	let name = req.user.username || req.user.displayName
-	let qr = `INSERT INTO tweets VALUES("${uuid}","${req.user.email}","${txt}","",CURTIME(),CURDATE())`
+	let qr = `INSERT INTO tweets VALUES("${uuid}","${req.user.email}","${txt}","",CURTIME(),CURDATE(),'${name}')`
 	conn.query(qr,(err,result)=>{
 		if (err) throw err
 	})
 	let sel = `SELECT * FROM tweets WHERE uid='${uuid}'`
 	conn.query(sel,(err,result)=>{
 		if (err) throw err
-		console.log(result)
-		let obj = {
-			'username':`${name}`,
-			'uuid':`${uuid}`,
-			'email':`${result[0].email}`,
-			'time':`${result[0].post}`,
-			'date':`${result[0].dates}`
-		}
-		res.send(obj)
+		res.send(result)
 	})
+})
+router.get('/like',(req,res)=>{
+    if (req.query.q=="is"){
+        let query = `INSERT INTO likes VALUES ('${req.query.id}','${req.user.email}')`
+        res.send('ok')
+    }
+})
+router.get('/profview',(req,res)=>{
+    console.log(req.query)
+    res.send('ok')
+})
+router.get('/recent',(req,res)=>{
+    let mail = req.query.mail
+    let select = `SELECT users FROM followers WHERE current='${mail}'`
+    conn.query(select,(err,fw)=>{
+        if (err) throw err
+        let str = ""
+        for (f of fw){
+            str+="'"+f.users+"'"+","
+        }
+        str=str.substring(-1)
+        console.log(str)
+    })
+    let query = `SELECT * FROM tweets`
+    conn.query(query,(err,all)=>{
+        res.send(all)
+    })
 })
 module.exports = router

@@ -63,9 +63,6 @@
               </li> 
             </ul>
           </div>
-          <div id='tweet'>
-		  <button><b>Tweet</b></button>
-          </div>
           <div id='profile'>
 		  <h2 id="curruser" ><%= username %></h2>
 		  <form action="logout" method="GET">	
@@ -75,7 +72,31 @@
           </div>
         </div>
         <div id='content'>
-	</div>
+            <h2>Home</h2> 
+            <div id="header">
+                <img src='<%= displaypicture %>' height="40" width="40">
+                <input type="text" id="tw" placeholder="What's happening?">
+                <div id="twimg">
+                    <img id="output">
+                </div>
+                <div id="inputln">
+                    <ul id="input">
+                      <li id="addimg">
+                        <input type="file" id="file" onchange="loadfile(event)" hidden>
+                        <label for="file">
+                        <img id="fim" src="./src/image.png" height="25" width="25" alt="image">
+                        </label>
+                      </li>
+                    <li id="createpoll" ><img src="./src/statistics.png" height="25" width="25" alt="poll"></li>
+                    <li id="addemo" ><img src="./src/happy.png" height="25" width="25" alt="emoji"></li>
+                    </ul>
+                    <button id="addtweet">Tweet</button>
+                </div>
+            </div>
+            <div id="colon">
+                   
+            </div>
+        </div>
         <div id='search'>
 		<input type="text" placeholder="search">
 	</div>

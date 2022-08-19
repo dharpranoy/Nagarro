@@ -144,4 +144,13 @@ router.get('/recent',(req,res)=>{
         res.send(all)
     })
 })
+router.post('/addcomment',(req,res)=>{
+	let qr = `INSERT INTO comments(uuid,email,txt) VALUES ('${req.body.id}','${req.user.email}','${req.body.commentmsg}','${req.user.username}')`
+	conn.query(qr,(err,result)=>{
+		if (err) throw err
+		let obj = {
+		}
+		res.send(obj)
+	})
+})
 module.exports = router

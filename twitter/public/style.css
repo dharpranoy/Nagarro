@@ -83,7 +83,7 @@ body{
 	display: flex;
 	justify-content: space-between;
 }
-#header>input{
+#twhead>input{
 	font-size:1.3rem;
 	border:none;
 	word-wrap: break-word;
@@ -99,7 +99,8 @@ body{
 	cursor:pointer;
 }
 #ttn{
-	margin:2rem;
+	border:1px solid rgb(0,0,0,10%);
+	padding:1rem;
 }
 #twinfo{
 	margin:1rem;
@@ -157,4 +158,36 @@ body{
     margin-right: auto;
     width: 90%;
 
+}
+#page{
+}
+#cmbar{
+	
+	border:1px solid rgb(0,0,0,10%);
+	margin:2rem;
+}
+#cmbar>p,h2{
+	margin:2rem;
+}
+#combox{
+	margin:2rem;
+}
+#cmmt{
+	padding:0.7rem;
+	height:5rem;
+	width:30rem;
+	resize:none;
+	border:1px black solid;
+	border-radius:0.5rem;
+	outline:none;
+}
+#cmmt:focus{
+	outline:none;
+}
+#addcmmt{
+	padding:0.9rem;
+	width:7rem;
+	background-color:#1DA1F2;
+	border:none;
+	border-radius:3rem;
 }

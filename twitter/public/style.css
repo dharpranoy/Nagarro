@@ -92,6 +92,9 @@ body{
 	margin:0.8rem;
 	outline:none;
 }
+#dp{
+    border-radius:3.4rem;
+}
 #addimg,#createpoll,#addemo,#addtweet{
 	cursor:pointer;
 }
@@ -111,12 +114,43 @@ body{
 	font-size:1rem;
 }
 #comment{
-	cursor:pointer;
 	border:none;
 	background: none;
 }
 #like{
 	cursor:pointer;
 	border:none;
+    margin:0.2rem;
 	background:none;
+    display: flex;
+    justify-content: baseline;
+}
+#like>p{
+    margin:0.2rem;
+}
+#interactions{
+    display:flex;
+    justify-content: baseline;
+}
+#twcont{
+    padding:1rem;    
+}
+#twimg{
+    max-height: 400px;
+    max-width: 500px;
+    position:relative;
+    overflow: hidden;
+}
+#output{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+#twpic{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+
 }

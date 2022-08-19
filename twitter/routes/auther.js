@@ -7,6 +7,7 @@ const GoogleStrategy = require('passport-google-oauth2').Strategy
 const GithubStrategy = require('passport-github2').Strategy
 const ensureLogin = require('connect-ensure-login')
 const path = require('path')
+const Jimp = require('jimp')
 const fs = require('fs')
 const crypto = require('crypto')
 let axios = require('axios')
@@ -25,7 +26,11 @@ router.post('/login/register',(req,res)=>{
 	.then(hashed=>{
 		conn.query(`INSERT INTO auth VALUES ('${name}','${hashed}','${mail}')`,(err,result)=>{
 			if (err) throw err
-			res.redirect('/dashboard')
+            let uuid = mail.split('@')[0]
+            conn.query(`INSERT INTO users VALUES ('${name}','${mail}','${uuid}')`,(err2,none)=>{
+                if (err2) throw err2
+			    res.redirect('/dashboard')
+            })
 		})
 	})
 
@@ -42,21 +47,20 @@ router.get('/auth/google/callback',
 }));
 router.get('/dashboard',ensureLogin.ensureLoggedIn(),(req,res)=>{
 	if (req.user.displayName!=null){
-		axios.get(`${req.user.picture}`)
-		.then(res=>res.data)
-		.then(data=>{
 			res.render('home',{
 				'username':req.user.displayName,
-				'displaypicture':data
+				'displaypicture':`${req.user.picture}`
 			})
-		})
 	}
 	if (req.user.username!=null){
-		res.render('home',{
-			'username':req.user.username,
-			'displaypicture':'./src/x.jpg'
+        let qr = `SELECT dispic from users where email='${req.user.email}'`
+        conn.query(qr,(err,result)=>{
+            res.render('home',{
+                'username':req.user.username,
+                'displaypicture':'./uploads/admin.jpg'
+		    })
 		})
-	}
+    }
 })
 router.get('/logout',ensureLogin.ensureLoggedIn(),(req,res)=>{
 	req.logout(err=>{
@@ -67,9 +71,21 @@ router.get('/logout',ensureLogin.ensureLoggedIn(),(req,res)=>{
 router.post('/addtweet',(req,res)=>{
 	let uuid = crypto.randomUUID()
 	let txt = req.body.txt
-	let img = ""
+	let img = req.body.img
+    let path = ""
+    if (img!=""){
+        const buffer = Buffer.from(img,"base64")
+        path = './public/uploads/'+`${uuid}.jpg`
+        Jimp.read(buffer, (err,result)=>{
+            if (err) {
+                path=""
+            }else{
+                result.quality(0).write(path)
+            }
+        })
+    }
 	let name = req.user.username || req.user.displayName
-	let qr = `INSERT INTO tweets VALUES("${uuid}","${req.user.email}","${txt}","",CURTIME(),CURDATE(),'${name}')`
+	let qr = `INSERT INTO tweets VALUES("${uuid}","${req.user.email}","${txt}","${path}",CURTIME(),CURDATE(),'${name}')`
 	conn.query(qr,(err,result)=>{
 		if (err) throw err
 	})

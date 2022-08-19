@@ -11,14 +11,14 @@ const ensureLogin = require('connect-ensure-login')
 const auth = require('./routes/auther.js')
 app.set('views','views')
 app.set('view engine','ejs')
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ limit:'50mb', extended: false }));
 app.use(session({
        secret:'Admin@fedora35',
        resave:true,
        saveUninitialized:true
 }))
 app.use(express.static(path.join(__dirname,'/public')))
-app.use(express.json())
+app.use(bodyParser.json({limit:'50mb'}))
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/',auth)

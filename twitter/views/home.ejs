@@ -44,12 +44,6 @@
                 </button>
               </li>
               <li>
-                <button id="tolist">
-                  <img src='./src/list.png' height=30 width=30> 
-                  <p>Lists</p>
-                </button>
-              </li>
-              <li>
                 <button id="toprofile">
                   <img src='./src/user.png' height=30 width=30> 
                   <p>Profile</p>
@@ -74,7 +68,7 @@
         <div id='content'>
             <h2>Home</h2> 
             <div id="header">
-                <img src='<%= displaypicture %>' height="40" width="40">
+                <img src='<%= displaypicture %>' id="dp" referrerpolicy="no-referrer" height="40" width="40">
                 <input type="text" id="tw" placeholder="What's happening?">
                 <div id="twimg">
                     <img id="output">
@@ -82,9 +76,9 @@
                 <div id="inputln">
                     <ul id="input">
                       <li id="addimg">
-                        <input type="file" id="file" onchange="loadfile(event)" hidden>
+                        <input type="file" accept="image/*" id="file" onchange="loadfile(event)" hidden>
                         <label for="file">
-                        <img id="fim" src="./src/image.png" height="25" width="25" alt="image">
+                            <img id="fim" src="./src/image.png" height="25" width="25" alt="image">
                         </label>
                       </li>
                     <li id="createpoll" ><img src="./src/statistics.png" height="25" width="25" alt="poll"></li>

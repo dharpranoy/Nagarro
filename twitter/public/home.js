@@ -4,9 +4,9 @@ loadfile=(event)=>{
 }
 $(document).ready(()=>{
     maketweet=(cos)=>{
-        console.log(cos)
         for (let i=0;i<cos.length;i++){
             $('#tw').val('')
+            $('#output').attr('src','')
             let div = document.createElement('div')
             div.setAttribute('id', 'ttn')
             let indiv = document.createElement('div')
@@ -31,18 +31,19 @@ $(document).ready(()=>{
             indiv.appendChild(button)
             let p = document.createElement('p')
             p.innerHTML=`
-                <p>${cos[i].uid}</p>
-                <p>${cos[i].post} ${cos[i].dates}</p>
+                <p id='date'>${cos[i].post} ${cos[i].dates}</p>
 
             `
             indiv.appendChild(p)
+            let media = ""
+            if (cos[i].img!=""){
+                console.log(cos[i].img)
+                media=`<img src='${cos[i].img.substring(8,)}' id='twpic'>` 
+            }
             let inner = `
                 <div id='twcont'>
                     <p>${cos[i].txt}</p>
-                </div>
-                <div id='interactions'>
-                <button id='comment'></button>
-                <button id='like'></button>
+                    ${media}
                 </div>
             `
             div.innerHTML = inner
@@ -60,22 +61,30 @@ $(document).ready(()=>{
           	})
           	.then(res=>res.json())
           	.then(count=>{
-								if (count.set==true) path = 'heart'
-								cnt=count.cnt
-								console.log(cnt,path)
-								lbtn.innerHTML = `<img src='./src/${path}.png' height=20 width=20>  ${cnt}`
+                    if (count.set==true) path = 'heart'
+                    cnt=count.cnt
+                    //console.log(cnt,path)
+                    lbtn.innerHTML = `<img src='./src/${path}.png' height=20 width=20>  <p>${cnt}</p>`
             		lbtn.addEventListener('click', ()=>{
             	  		let token = "is"
                 		if (lbtn.firstElementChild.getAttribute('src')=="./src/heart.png"){
                     		lbtn.firstElementChild.setAttribute('src', "./src/heartno.png")
-                  			token="no"
+                            token="no"
+                            let c = parseInt(`${lbtn.lastElementChild.innerHTML}`)
+                            c-=1
+                            lbtn.lastElementChild.innerHTML=c
+
                 		}else{
-                				token="is"
+                			token="is"
                     		lbtn.firstElementChild.setAttribute('src', "./src/heart.png")
+                            let c = parseInt(`${lbtn.lastElementChild.innerHTML}`)
+                            c+=1
+                            lbtn.lastElementChild.innerHTML=c
+
                 		}
-										fetch(`/like?q=${token}&id=${cos[i].uid}`,{
-											method:'GET'
-										})
+                        fetch(`/like?q=${token}&id=${cos[i].uid}`,{
+                            method:'GET'
+                        })
             		})
             		intr.appendChild(cbtn)
             		intr.appendChild(lbtn)
@@ -106,21 +115,49 @@ $(document).ready(()=>{
     #('#tonotification').click(()=>{
         
     })*/
-    $('#addtweet').click(()=>{
+    $('#addtweet').click(async()=>{
 		let area = $('#tw').val()
-		let obj = {
-			'txt':`${area}`
-		}
-		if (area!=""){
-			fetch('/addtweet',{
-				method:'POST',
-				headers:{'Content-type':'application/json'},
-				body:JSON.stringify(obj)
-			})
-			.then(res=>res.json())
-			.then(cos=>{
-			    maketweet(cos)	
-			})
-		}
-	})
+        let file = document.querySelector('#file').files[0]
+        if (file){
+            const reader = new FileReader()
+            reader.readAsDataURL(file)
+            reader.onload=()=>{ 
+                let img = reader.result.split(",")[1]
+                console.log(img)
+                let obj = {
+                    'txt':`${area}`,
+                    'img':`${img}`
+                }
+                if (area!=""){
+                    fetch('/addtweet',{
+                        method:'POST',
+                        headers:{'Content-type':'application/json'},
+                        body:JSON.stringify(obj)
+                    })
+                    .then(res=>res.json())
+                    .then(cos=>{
+                        maketweet(cos)	
+                    })
+                }
+
+            }
+        }else{
+            let obj = {
+                    'txt':`${area}`,
+                    'img':''
+                }
+                if (area!=""){
+                    fetch('/addtweet',{
+                        method:'POST',
+                        headers:{'Content-type':'application/json'},
+                        body:JSON.stringify(obj)
+                    })
+                    .then(res=>res.json())
+                    .then(cos=>{
+                        maketweet(cos)	
+                    })
+                }
+
+        }
+    })
 })

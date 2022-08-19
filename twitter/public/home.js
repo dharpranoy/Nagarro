@@ -31,7 +31,7 @@ $(document).ready(()=>{
             indiv.appendChild(button)
             let p = document.createElement('p')
             p.innerHTML=`
-                <p>${cos[i].post} ${cos[i].dates}</p>
+                <p id='date'>${cos[i].post} ${cos[i].dates}</p>
 
             `
             indiv.appendChild(p)

@@ -114,8 +114,12 @@ body{
 	font-size:1rem;
 }
 #comment{
+    cursor:pointer;
 	border:none;
 	background: none;
+}
+#date{
+    font-size:0.8rem;
 }
 #like{
 	cursor:pointer;

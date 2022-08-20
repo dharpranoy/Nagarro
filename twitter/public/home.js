@@ -1,9 +1,19 @@
+class USER {
+		constructor(userid,name,src,email){
+			this.userid = userid
+			this.name = userid
+			this.src = src
+			this.email = src
+		}
+}
+
 loadfile=(event)=>{
 	let image = document.getElementById('output')
 	image.src = URL.createObjectURL(event.target.files[0])
 }
 $(document).ready(()=>{
-	
+		
+
 		addcomments=(com)=>{
 				
 		}
@@ -163,7 +173,7 @@ $(document).ready(()=>{
 			document.getElementById('addtweet').disabled =false 
       let inner = `
       			<h2 id='page'>Home</h2> 
-            <div id="header">
+            <div id="twhead">
                 <img src='<%= displaypicture %>' id="dp" referrerpolicy="no-referrer" height="40" width="40">
                 <input type="text" id="tw" placeholder="What's happening?">
                 <div id="twimg">
@@ -187,7 +197,7 @@ $(document).ready(()=>{
                    
         		</div>
       `	  
-      $('#conent').html(inner)
+      //$('#conent').html(inner)
 			fetch('/recent',{
         	method:'GET'
     	})
@@ -211,7 +221,6 @@ $(document).ready(()=>{
             reader.readAsDataURL(file)
             reader.onload=()=>{ 
                 let img = reader.result.split(",")[1]
-                console.log(img)
                 let obj = {
                     'txt':`${area}`,
                     'img':`${img}`

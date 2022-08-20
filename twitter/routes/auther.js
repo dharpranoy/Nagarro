@@ -27,7 +27,7 @@ router.post('/login/register',(req,res)=>{
 		conn.query(`INSERT INTO auth VALUES ('${name}','${hashed}','${mail}')`,(err,result)=>{
 			if (err) throw err
             let uuid = mail.split('@')[0]
-            conn.query(`INSERT INTO users VALUES ('${name}','${mail}','${uuid}')`,(err2,none)=>{
+            conn.query(`INSERT INTO users(username,email,uuid) VALUES ('${name}','${mail}','${uuid}')`,(err2,none)=>{
                 if (err2) throw err2
 			    res.redirect('/dashboard')
             })
@@ -67,6 +67,23 @@ router.get('/logout',ensureLogin.ensureLoggedIn(),(req,res)=>{
 		if (err) throw err
 	})	
 	res.redirect('/')
+})
+router.get('/userinfo',(req,res)=>{
+	if (req.user.displayName){
+		let obj = {
+			'username':`${req.user.displayName}`,
+			'email':`${req.user.email}`,
+			'uuid':`${req.user.email.split('@')[0]}`,
+			'dispic':`${req.user.picture}`
+		}
+		res.send(obj)
+	}else{
+		let qr = `SELECT * FROM users WHERE email='${req.user.email}'`
+		conn.query(qr,(err,result)=>{
+			if (err) throw err
+			res.send(result[0])
+		})
+	}
 })
 router.post('/addtweet',(req,res)=>{
 	let uuid = crypto.randomUUID()
@@ -145,10 +162,11 @@ router.get('/recent',(req,res)=>{
     })
 })
 router.post('/addcomment',(req,res)=>{
-	let qr = `INSERT INTO comments(uuid,email,txt) VALUES ('${req.body.id}','${req.user.email}','${req.body.commentmsg}','${req.user.username}')`
+	let qr = `INSERT INTO comments(uuid,email,txt,username) VALUES ('${req.body.id}','${req.user.email}','${req.body.commentmsg}','${req.user.username}')`
 	conn.query(qr,(err,result)=>{
 		if (err) throw err
 		let obj = {
+			
 		}
 		res.send(obj)
 	})

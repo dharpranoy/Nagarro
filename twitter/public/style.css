@@ -52,6 +52,10 @@ body{
 	padding-right:3rem;
 	width:45vw;
 }
+#content{
+	-ms-overflow-style: none;  
+  scrollbar-width: none;
+}
 #content::-webkit-scrollbar{
 	display:none;
 }

@@ -119,9 +119,15 @@ body{
 	font-size:1rem;
 }
 #comment{
-    cursor:pointer;
+   cursor:pointer;
 	border:none;
-	background: none;
+    margin:0.1rem;
+	background:none;
+    display: flex;
+    justify-content: baseline;
+}
+#comment>p{
+	margin:0.2rem;
 }
 #date{
     font-size:0.8rem;
@@ -189,6 +195,8 @@ body{
 	outline:none;
 }
 #addcmmt{
+	color:white;
+	cursor:pointer;
 	padding:0.9rem;
 	width:7rem;
 	background-color:#1DA1F2;

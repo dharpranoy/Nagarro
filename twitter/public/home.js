@@ -15,7 +15,17 @@ $(document).ready(()=>{
 		
 
 		addcomments=(com)=>{
-				
+			$('#allcm').val('')
+			for (co of com){
+					let inner = `
+						<div id='cmmsg'>
+							<h3>${co.username}</h3>
+							<p>${co.txt}</p>
+						</div>
+		
+						`
+				$('#allcm').append(inner)
+			}	
 		}
 
     maketweet=(cos)=>{
@@ -66,93 +76,101 @@ $(document).ready(()=>{
             intr.setAttribute('id', 'interactions')
             let cbtn = document.createElement('button')
             cbtn.setAttribute('id', 'comment')
-            cbtn.innerHTML = "<img src='./src/comment.png' height=24 width=24>"
-          	cbtn.addEventListener('click',()=>{
-								$('#colon').html('')
-								document.getElementById('addtweet').disabled = true
-								let div = document.createElement('div')
-								div.setAttribute('id','cmbar')
-								let cmm = `
-											<h2>${cos[i].username}</h2>
-											<p>${cos[i].txt}</p>
-
-												${media}
-									`
-							div.innerHTML = cmm
-							let combox = document.createElement('div')
-							combox.setAttribute('id','combox')
-							combox.innerHTML = "<textarea placeholder='write comment...'  id='cmmt'></textarea>"
-							let cmbtn = document.createElement('button')
-							cmbtn.innerHTML = "Reply"
-							cmbtn.setAttribute('id','addcmmt')
-							cmbtn.addEventListener('click',()=>{
-									let obj ={
-										'id':`${cos[i].uid}`,
-										'commentmsg':$('#cmmt').val()
-									}
-									fetch('/addcomment',{
-										method:'POST',
-										headers:{'Content-type':'application/json'},
-										body:JSON.stringify(obj)
-									})
-									.then(res=>res.json())
-									.then(cl=>{
-										addcomments(cl)
-									})
-							})
-							let cmdiv = document.createElement('div')
-							cmdiv.setAttribute('id','allcm')
-							combox.appendChild(cmbtn)
-							combox.appendChild(cmdiv)
-							div.appendChild(combox)
-							$('#colon').append(div)
-							fetch(`/comments?id=${cos[i].uid}}`,{
-								method:'GET'
-							})
-							.then(res=>res.json())
-							.then(rn=>{
-									addcomments(rn)
-							})
-          	})
-            let lbtn = document.createElement('button')
-            lbtn.setAttribute('id', 'like')
-          	let path = 'heartno'
-          	let cnt = 0
-          	fetch(`/chklike?id=${cos[i].uid}`,{
-          		method:'GET'
+          	fetch(`/checkcomment?id=${cos[i].uid}`,{
+          		method:'GET'	
           	})
           	.then(res=>res.json())
-          	.then(count=>{
-                    if (count.set==true) path = 'heart'
-                    cnt=count.cnt
-                    //console.log(cnt,path)
-                    lbtn.innerHTML = `<img src='./src/${path}.png' height=20 width=20>  <p>${cnt}</p>`
-            				lbtn.addEventListener('click', ()=>{
-            	  		let token = "is"
-                		if (lbtn.firstElementChild.getAttribute('src')=="./src/heart.png"){
-                    		lbtn.firstElementChild.setAttribute('src', "./src/heartno.png")
-                            token="no"
-                            let c = parseInt(`${lbtn.lastElementChild.innerHTML}`)
-                            c-=1
-                            lbtn.lastElementChild.innerHTML=c
+          	.then(comcnt=>{
+							cbtn.innerHTML = `<img src='./src/comment.png' height=24 width=24> <p>${comcnt.count}<p/>`
+          		cbtn.addEventListener('click',()=>{
+									$('#colon').html('')
+									document.getElementById('addtweet').disabled = true
+									let div = document.createElement('div')
+									div.setAttribute('id','cmbar')
+									let cmm = `
+												<h2>${cos[i].username}</h2>
+												<p>${cos[i].txt}</p>
 
-                		}else{
-                			token="is"
-                    		lbtn.firstElementChild.setAttribute('src', "./src/heart.png")
-                            let c = parseInt(`${lbtn.lastElementChild.innerHTML}`)
-                            c+=1
-                            lbtn.lastElementChild.innerHTML=c
+													${media}
+										`
+								div.innerHTML = cmm
+								let combox = document.createElement('div')
+								combox.setAttribute('id','combox')
+								combox.innerHTML = "<textarea placeholder='write comment...'  id='cmmt'></textarea>"
+								let cmbtn = document.createElement('button')
+								cmbtn.innerHTML = "Reply"
+								cmbtn.setAttribute('id','addcmmt')
+								cmbtn.addEventListener('click',()=>{
+										let obj ={
+											'id':`${cos[i].uid}`,
+											'commentmsg':$('#cmmt').val()
+										}
+										fetch('/addcomment',{
+											method:'POST',
+											headers:{'Content-type':'application/json'},
+											body:JSON.stringify(obj)
+										})
+										.then(res=>res.json())
+										.then(cl=>{
+											addcomments(cl)
+										})
+								})
+								let cmdiv = document.createElement('div')
+								cmdiv.setAttribute('id','allcm')
+								combox.appendChild(cmbtn)
+								combox.appendChild(cmdiv)
+								div.appendChild(combox)
+								$('#colon').append(div)
+								fetch(`/comments?id=${cos[i].uid}`,{
+									method:'GET'
+								})
+								.then(res=>res.json())
+								.then(rn=>{
+										console.log(rn)
+										addcomments(rn)
+								})
+          		})
+            	let lbtn = document.createElement('button')
+            	lbtn.setAttribute('id', 'like')
+          		let path = 'heartno'
+          		let cnt = 0
+          		fetch(`/chklike?id=${cos[i].uid}`,{
+          			method:'GET'
+          		})
+          		.then(res=>res.json())
+          		.then(count=>{
+                    	if (count.set==true) path = 'heart'
+                    	cnt=count.cnt
+                    	//console.log(cnt,path)
+                    	lbtn.innerHTML = `<img src='./src/${path}.png' height=20 width=20>  <p>${cnt}</p>`
+            					lbtn.addEventListener('click', ()=>{
+            	  			let token = "is"
+                			if (lbtn.firstElementChild.getAttribute('src')=="./src/heart.png"){
+                    			lbtn.firstElementChild.setAttribute('src', "./src/heartno.png")
+                            	token="no"
+                            	let c = parseInt(`${lbtn.lastElementChild.innerHTML}`)
+                            	c-=1
+                            	lbtn.lastElementChild.innerHTML=c
 
-                		}
-                        fetch(`/like?q=${token}&id=${cos[i].uid}`,{
-                            method:'GET'
-                        })
-            		})
-            		intr.appendChild(cbtn)
-            		intr.appendChild(lbtn)
-            		div.appendChild(intr)
-            		div.insertBefore(indiv, div.children[0])
-            		$('#colon').prepend(div)
+                			}else{
+                				token="is"
+                    			lbtn.firstElementChild.setAttribute('src', "./src/heart.png")
+                            	let c = parseInt(`${lbtn.lastElementChild.innerHTML}`)
+                            	c+=1
+                            	lbtn.lastElementChild.innerHTML=c
+
+                			}
+                        	fetch(`/like?q=${token}&id=${cos[i].uid}`,{
+                            	method:'GET'
+                        	})
+            			})
+            			intr.appendChild(cbtn)
+            			intr.appendChild(lbtn)
+            			div.appendChild(intr)
+            			div.insertBefore(indiv, div.children[0])
+            			$('#colon').prepend(div)
+          		})
+            		
           	})
             
         }

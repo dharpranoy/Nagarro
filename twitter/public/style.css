@@ -169,8 +169,6 @@ body{
     width: 90%;
 
 }
-#page{
-}
 #cmbar{
 	
 	border:1px solid rgb(0,0,0,10%);
@@ -202,4 +200,23 @@ body{
 	background-color:#1DA1F2;
 	border:none;
 	border-radius:3rem;
+}
+#comment-profile{
+    display:flex;
+    justify-content: baseline;
+}
+#cmmsg{
+    margin:1rem;
+	border:1px solid rgb(0,0,0,10%);
+    padding:0.7rem;
+}
+#comment-profile>img{
+    border-radius:3rem;
+    padding:0.7rem;
+}
+#twinfo>img{
+    border-radius:3rem;
+}
+#cmmsg>p{
+    padding:0.7rem;
 }

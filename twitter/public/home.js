@@ -15,11 +15,15 @@ $(document).ready(()=>{
 		
 
 		addcomments=(com)=>{
+            $('#cmmt').val('')
 			$('#allcm').val('')
 			for (co of com){
 					let inner = `
 						<div id='cmmsg'>
-							<h3>${co.username}</h3>
+                            <div id='comment-profile'>
+                                <img  src='${co.dispic}' height=30 width=30 referrerpolicy='no-referrer'>
+                                <h3>${co.username}</h3>
+                            </div>
 							<p>${co.txt}</p>
 						</div>
 		
@@ -37,9 +41,10 @@ $(document).ready(()=>{
             let indiv = document.createElement('div')
             indiv.setAttribute('id', 'twinfo')
             let img = document.createElement('img')
-            img.setAttribute('src', './src/image.png')
+            img.setAttribute('src', `${cos[i].dispic}`)
             img.setAttribute('height', '30')
             img.setAttribute('width', '30')
+            img.setAttribute('referrerpolicy', 'no-referrer')
             indiv.appendChild(img)
             let button = document.createElement('button')
             button.setAttribute('id', 'profilebtn')
@@ -82,7 +87,7 @@ $(document).ready(()=>{
           	.then(res=>res.json())
           	.then(comcnt=>{
 							cbtn.innerHTML = `<img src='./src/comment.png' height=24 width=24> <p>${comcnt.count}<p/>`
-          		cbtn.addEventListener('click',()=>{
+          		            cbtn.addEventListener('click',()=>{
 									$('#colon').html('')
 									document.getElementById('addtweet').disabled = true
 									let div = document.createElement('div')
@@ -101,19 +106,21 @@ $(document).ready(()=>{
 								cmbtn.innerHTML = "Reply"
 								cmbtn.setAttribute('id','addcmmt')
 								cmbtn.addEventListener('click',()=>{
-										let obj ={
-											'id':`${cos[i].uid}`,
-											'commentmsg':$('#cmmt').val()
-										}
-										fetch('/addcomment',{
-											method:'POST',
-											headers:{'Content-type':'application/json'},
-											body:JSON.stringify(obj)
-										})
-										.then(res=>res.json())
-										.then(cl=>{
-											addcomments(cl)
-										})
+										if ($('#cmmt').val()!=""){
+                                            let obj ={
+                                                'id':`${cos[i].uid}`,
+                                                'commentmsg':$('#cmmt').val()
+                                            }
+                                            fetch('/addcomment',{
+                                                method:'POST',
+                                                headers:{'Content-type':'application/json'},
+                                                body:JSON.stringify(obj)
+                                            })
+                                            .then(res=>res.json())
+                                            .then(cl=>{
+                                                addcomments(cl)
+                                            })
+                                        }
 								})
 								let cmdiv = document.createElement('div')
 								cmdiv.setAttribute('id','allcm')
@@ -181,6 +188,7 @@ $(document).ready(()=>{
     })
     .then(res=>res.json())
     .then(cr=>{
+        console.log(cr)
         maketweet(cr)
     })
 

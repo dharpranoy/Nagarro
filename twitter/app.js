@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-const sql = require('mysql')
 const bodyParser = require('body-parser')
 const multer = require('multer')()
 const session = require('express-session')
@@ -28,6 +27,7 @@ passport.serializeUser((user,done)=>{
 passport.deserializeUser((user,done)=>{
 	done(null,user)
 })
-app.listen(8080,()=>{
-	console.log('server started at 8080')
+let port = process.env.PORT || 8080
+app.listen(port,()=>{
+	console.log(`server started at ${port} `)
 })

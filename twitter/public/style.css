@@ -156,6 +156,13 @@ body{
     position:relative;
     overflow: hidden;
 }
+#search{
+    margin:2rem;
+}
+#search>input{
+    padding:0.3rem;
+    width:16rem;
+}
 #output{
     display: block;
     margin-left: auto;

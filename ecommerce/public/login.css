@@ -1,0 +1,102 @@
+       
+    .SignUp
+        {
+            font-family: Varela Round;
+            display: flex;
+            flex-wrap: wrap;
+			padding:4rem;
+			max-width:1366px;
+			margin:auto;
+			
+           
+        }
+        .SignUp>div
+        {
+			
+			padding:2rem;
+            flex: auto;
+        }
+    fieldset
+        {
+			
+            border: 0.15rem solid dimgrey;
+            border-radius: 1.3rem;
+            transition: 0.7s;
+			
+			
+			height:100%;
+			
+        }
+    fieldset:hover
+        {
+            transition: 0.7s;
+            border:0.15rem solid black;
+        }
+    input
+        {
+            border: 0.15rem solid grey;
+            border-radius: 1rem;
+            font-family: Varela Round;
+            padding: 1rem;
+            margin: 0.5rem;
+			min-width: 90%;
+			max-width:90%;
+            outline: none;
+            transition:0.5s;
+        }
+    input:hover
+        {
+            transition:0.5s;
+            background-color: black;
+            border:0.15rem solid black;
+            color: white;
+            
+        }
+    #sub1
+        {
+            background-color: cornflowerblue;
+            outline: none;
+            border: none;
+            color: wheat;
+            font-size: 1.25rem;
+             transition: 0.7s;
+        }
+    #sub2
+        {
+            background-color: dimgrey;
+            outline: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            transition: 0.7s;
+        }
+    #sub1:hover
+        {
+            transition: 0.7s;
+            background-color: dodgerblue;
+        }
+    #sub2:hover
+        {
+            transition:0.7s;
+            background-color: black;
+        }
+    #header{
+        font-family: 'Verala Round';
+        padding-top: 3rem;
+        text-align: center;
+    }
+    #header>button{
+        font-size: large;
+        border: 0.5rem solid black;
+        border-radius: 5rem;
+        background-color: black;
+        color: white;
+    }
+    #low>button{
+        padding:0.6rem;
+        align-content: center;
+    }
+    #low>form>input{
+        padding: 0.6rem;
+    }
+

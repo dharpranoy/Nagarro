@@ -1,0 +1,47 @@
+<html>
+    <head>
+      <title>Shop-ovo.com</title>  
+        <meta charset="utf-8">
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+        <link ref='icon' href='icon.ico' type='image/x-icon'>
+        <script type="text/javascript"></script>
+        <link rel="stylesheet" href="./login.css">
+    </head>
+    <body>
+        <div id="header">
+            <button><b>Shop online with Shop-ovo</b></button>
+        </div>
+        <div class="SignUp">
+            <div>
+            <fieldset>
+            <legend>Sign Up</legend>
+            <form action="/sign_up" method="post">
+            <input type="text" name="uname" required placeholder="Enter your username"><br>
+            <input type="email" name="mail" required placeholder="Enter your email id"><br>
+            <input type="password" name="passwd" required placeholder="Enter a password for your username"><br>
+            <input id="sub1" type="submit" value="Sign Up"><br>
+            </form>
+            </fieldset>
+            </div>
+           
+            <div>
+           <fieldset>
+           <legend>Log In</legend>
+            <form action="/login/password" method="get">
+            <input type="email" name="mail" required placeholder="Enter your username"><br>
+            <input type="password" name="passwd" required placeholder="Enter a password for your username"><br>
+            <input id="sub2" type="submit" value="log in"><br>
+            </form>
+           </fieldset>
+            </div>
+        </div>
+        <div id="low">
+            <button type="button" onclick="get()">Forgot password</button>
+        </div>
+    </body>
+</html>

@@ -8,6 +8,14 @@ router.get('/',(req,res)=>{
         res.send(result.rows)
     })
 })
+router.get('/filter',(req,res)=>{
+    let qr = `SELECT p1.uid,name,description,price,img from products p1 inner join productdesc d1 on p1.uid=d1.uid and d1.category='${req.query.type}'`
+
+    conn.query(qr,(err,result)=>{
+        if (err) throw err
+        res.send(result.rows)
+    })
+})
 router.get('/kart',(req,res)=>{
     let qr = `SELECT p1.uid,img,name,price,itemno FROM products p1 inner join kart k1 on p1.uid = k1.uid and k1.email = '${req.user.email}'`
     conn.query(qr,(err,result)=>{

@@ -69,6 +69,53 @@ $(document).ready(()=>{
         outer.appendChild(inner)
         $('#hover').append(outer)
     })
+    $('#products').click(()=>{
+        let inner =`
+        <button class='btn btn-primary' id="Electronics">Electronics</button>
+        <button class='btn btn-primary' id="Clothing">Clothing</button>
+        <button class='btn btn-primary' id="Beverage">Beverage</button>
+        <button class='btn btn-primary' id="Smartphone">Smartphone</button>
+        <button class='btn btn-primary' id="Musicsytem">Musicsytem</button>
+        <button class='btn btn-primary' id="Groceries">Groceries</button>
+        <button class='btn btn-primary' id="Miscelleneous">Miscelleneous</button>
+        <button class='btn btn-primary' id="Books">Books</button>
+        `
+        $('#hover').html(`
+                <div id='category-container'>
+                    ${inner}
+                </div>
+                <div id='category-list'></div>
+        `)
+        let ele = document.getElementsByTagName('button')
+        for (let i=0;i<ele.length;i++){
+            ele[i].addEventListener('click',(e)=>{
+                let type = ele[i].id
+                fetch(`/suggest/filter?type=${type}`,{
+                    method:'get'
+                })
+                .then(res=>res.json())
+                .then(cos=>{
+                    $('#category-list').html('')
+                   for (const co of cos){
+                        let data = `
+                            <div id='suggestion-card'>
+                            <div class="card">
+                              <img src="${co.img}" id='card-img-product' alt="...">
+                              <div class="card-body">
+                                <h5 class="card-title">${co.name}</h5>
+                                <a href="/view?id=${co.uid}" class="btn btn-primary">View</a>
+                                <a class="btn btn-success">${co.price} /-</a>
+                              </div>
+                            </div>
+                            </div>
+                       `
+                        $('#category-list').append(data) 
+                   }
+                })
+            })
+        }
+
+    })
     $('#kart').click(()=>{
         fetch('/suggest/kart',{
             method:'GET'
@@ -211,9 +258,9 @@ $(document).ready(()=>{
                    $('#product-price').val('')
                    $('#product-desc').val('')
                     let alt = `<div class="alert alert-success" role="alert">
-                        A simple success alert—check it out!
+                        Product added successfully
                     </div>`
-                    $('#product-info').append(alt)
+                    $('#product-info').html(alt)
                 })
             }
         }

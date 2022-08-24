@@ -25,4 +25,11 @@ nrouter.post('/addproduct',(req,res)=>{
         })
     })
 })
+nrouter.get('/orders',(req,res)=>{
+    let qr = `SELECT o1.uid,itemno,price,img,name FROM orders o1 inner join products p1 on o1.uid = p1.uid and o1.email='${req.user.email}'`
+    conn.query(qr,(err,result)=>{
+        if (err) throw err
+        res.send(result.rows)
+    })
+})
 export { nrouter }

@@ -54,7 +54,7 @@ $(document).ready(()=>{
                         </select>
                     </div>
                     <div>
-                    <input type="file" accept="image/*" id="file" hidden>
+                    <input type="file" accept="image/jpeg, image/png, image/jpg, image/svg" id="file" hidden>
                     <label for="file">
                         <img id="fim" src="./src/image.png" height="25" width="25" alt="image">
                     </label>

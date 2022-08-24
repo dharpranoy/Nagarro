@@ -1,6 +1,8 @@
 body{
     margin:auto;
     padding:auto;
+
+    background:#E0E0E0;
 }
 
 
@@ -13,12 +15,12 @@ body{
     list-style:none;
     display:flex;
     justify-content:space-evenly;
+    margin:1.4rem;
 }
 #navlinks>ul>li{
     padding-left:1rem;
 }
 #navlinks>ul>li>button{
-    padding:1rem;
     color:white;
     border:none;
     font-size:1rem;
@@ -121,4 +123,76 @@ body{
     padding:0.4rem;
     border:1px solid rgb(0,0,0,30%);
     border-radius:1rem;
+}
+#order-img-product{
+    height:170px;
+    width:170px;
+}
+
+#card-img-product{
+    height:170px;
+    width:170px;
+    position: relative;
+    overflow: hidden;
+}
+.card-b{
+    background-color: white;
+    text-align:center;
+    border:1px solid rgba(0, 0, 0, 20%);
+    width: 15rem;
+    height:25rem;
+
+}
+.card-b:hover{
+    cursor:pointer;
+    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#order-card{
+    margin:2rem;
+    display:inline-grid;
+    grid-template-columns:auto auto auto;
+}
+#suggestion-card{
+    margin:2rem;
+    display:inline-grid;
+    gap:0.6rem;
+    grid-template-columns: auto auto auto auto;
+}
+#card-img-product{
+    margin:1rem;
+}
+.card{
+    text-align:center;
+    border:1px solid rgba(0, 0, 0, 20%);
+    width: 15rem;
+    height:20rem;
+}
+.card:hover{
+    cursor:pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#kart-container{
+    display:inline-grid;
+    grid-template-columns:auto auto auto;
+    padding:2rem;
+}
+#kart-item{
+    background-color:white;
+    padding:1rem;
+    margin:1rem;
+    width:15rem;
+    border:1px solid rgba(0, 0, 0, 20%);
+}
+#kart-item:hover{
+    cursor:pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+#kart-item-no{
+    display:flex;
+    justify-content: basline;
+}
+#kart-item-no>a,p{
+    margin:0.6rem;
 }

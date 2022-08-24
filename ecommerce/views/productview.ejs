@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+		<title>kart home</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link ref='icon' href='src/icon.ico' type='image/x-icon'>
+		<script src="./productview.js"></script>
+        <link rel="stylesheet" href="./view.css">    
+    </head>
+    <body>
+            <div class='container-fluid'>
+                <div id="product-class" class="card mx-auto col-md-3 col-10 mt-5">
+                    <img class='mx-auto img-thumbnail'
+                         src="<%= img %>"
+                        width="auto" height="auto"/>
+                    <div class="card-body text-center mx-auto">
+                        <div class='cvp' id="<%= uid %>">
+                            <h5 class="card-title font-weight-bold"><%= name %></h5>
+                            <p class="card-text">&#x20B9;<%= price %>/-</p>
+                            <p class="btn details px-auto"><%= description %></p><br />
+                            <a id="add-kart" class="btn cart px-auto">ADD TO CART</a>
+                            <a href="/createorder?id=<%= uid %>" id="make-order" class="btn cart px-auto">MAKE ORDER</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+		    <div id="back">
+                <a href="/home" class="btn btn-danger">Go Back</a>
+            </div>
+	</body>
+</html>

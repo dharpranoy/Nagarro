@@ -24,6 +24,12 @@ import { router } from './routes/auth.js'
 app.use('/',router)
 import { nrouter } from './routes/home.js'
 app.use('/home',ensureLogin.ensureLoggedIn(),nrouter)
+import { suggest } from './routes/suggest.js'
+app.use('/suggest',ensureLogin.ensureLoggedIn(),suggest)
+import { view } from './routes/product.js'
+app.use('/view',ensureLogin.ensureLoggedIn(),view)
+import { contact } from './routes/contact.js'
+app.use('/createorder',ensureLogin.ensureLoggedIn(),contact)
 const PORT = process.env.PORT || 6600
 app.listen(PORT,()=>{
     console.log(`Running on ${PORT}`)

@@ -53,4 +53,10 @@ router.post('/sign_up',(req,res)=>{
             
     })
 })
+router.get('/logout',(req,res)=>{
+    req.logout((err)=>{
+        if (err) throw err
+        res.redirect('/')
+    })
+})
 export { router }

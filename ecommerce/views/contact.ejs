@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <title>Order page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./contact.css">
+    <script src='./contact.js'></script>
+</head>
+<body>
+        <form class="form">
+          <h2>Shipping address</h2>
+          <p ><input id="addr1" placeholder="Address Line 1"></input></p>
+          <p ><input id="addr2" placeholder="City and state"></input></p>
+          <p ><input id="addr3" placeholder="Pincode"></input></p>
+          <div>
+              <span class="ma" id="<%= no %>"></span>
+              <span id="<%= id %>" class="fa fa-phone"></span>Thank you for shopping with us
+          </div>
+          <button><a href="/home" style="text-decoration: none;">Cancel</a></button>
+          <button id="make-order" class="btn btn-secondary">Place order</button>
+        </form>
+
+</body>
+</html>

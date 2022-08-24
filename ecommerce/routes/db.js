@@ -2,9 +2,8 @@ import * as pg from 'pg'
 const { Pool } = pg.default
 const pool = new Pool({
     user:'postgres',
+    host:'localhost',
     database:'fish',
-    password:'secret123',
-    port:5432,
-    host:'localhost'
+    port:'5432'
 })
 export let conn = pool

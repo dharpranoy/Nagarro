@@ -10,7 +10,7 @@ const __dirname = path.resolve()
 app.set('views','views')
 app.set('view engine','ejs')
 app.use(express.static(path.join(__dirname,'./public')))
-const upload = multer({dest:'./public/uploads/'})
+const upload = multer()
 app.use(bodyparser.urlencoded({limit:'50mb',extended:true}))
 app.use(bodyparser.json({limit:'50mb'}))
 app.use(session({

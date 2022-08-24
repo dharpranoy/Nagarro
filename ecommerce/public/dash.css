@@ -17,6 +17,13 @@ body{
     justify-content:space-evenly;
     margin:1.4rem;
 }
+#category-container{
+    display:flex;
+    justify-content: space-evenly;
+}
+#category-container>button{
+    margin:1rem;
+}
 #navlinks>ul>li{
     padding-left:1rem;
 }
